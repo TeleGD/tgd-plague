@@ -20,4 +20,12 @@ public class Weapon extends Entity {
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
 		
 	}
+	
+	public void checkForCollision() {
+		
+	}
+	
+	public void die() {
+		
+	}
 }
