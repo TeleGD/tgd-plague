@@ -1,4 +1,5 @@
-package general;
+package smash;
+
 
 import java.io.File;
 import org.newdawn.slick.GameContainer;
@@ -8,10 +9,10 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-public class World extends BasicGameState {
+public class World2 extends BasicGameState {
 
-	public static int ID=2;
-
+	public static int ID=3;
+	public static String GAME_NAME = "Smash";
 	
 	public void init(GameContainer container, StateBasedGame arg1) throws SlickException {
 		//Ici ne mettre que des initialisations de variables 
@@ -34,7 +35,7 @@ public class World extends BasicGameState {
 	}
 
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
-		g.drawString("oui", 200, 200);
+		g.drawString("non", 200, 200);
 
 
 	}

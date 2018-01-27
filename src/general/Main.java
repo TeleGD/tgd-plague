@@ -38,7 +38,8 @@ public class Main extends StateBasedGame{
 	public void initStatesList(GameContainer container) throws SlickException {
 		addState(new WelcomeMenu());
 		addState(new MainMenu());
-		addState(new World());
+		addState(new plague.World1());
+		addState(new smash.World2());
 		this.enterState(WelcomeMenu.ID);
 	}
 }

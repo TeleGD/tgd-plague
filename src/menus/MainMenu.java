@@ -14,7 +14,7 @@ public class MainMenu extends Menu{
 		super.setTitrePrincipal("INSERER TITRE ICI");
 		super.setTitreSecondaire("SOUS TITRE");
 		
-		super.setItems(/*World1.GAME_NAME,World2.GAME_NAME,World3.GAME_NAME,*/"Scores", "Quitter");
+		super.setItems(plague.World1.GAME_NAME,smash.World2.GAME_NAME,"Scores", "Quitter");
 
 		super.setEnableClignote(false);
 		super.setCouleurClignote(Color.red);
@@ -30,12 +30,14 @@ public class MainMenu extends Menu{
 	public void onOptionItemSelected(int position) {
 		switch (position) {
 		case 0:
-			//appeler le reset du world du jeu correspondant
-			//puis faire un game.enterState(ID du world, transition de sortie comme new FadeOutTransition(), 
-			//											 transition d'entree comme new FadeInTransition())
+			plague.World1.reset();
+			game.enterState(plague.World1.ID, new FadeOutTransition(),
+			new FadeInTransition());
 			break;
 		case 1:
-			//Pareil pour le deuxieme item, etc
+			smash.World2.reset();
+			game.enterState(smash.World2.ID, new FadeOutTransition(),
+			new FadeInTransition());
 			break;
 		case 2:
 			System.out.println("exit");
