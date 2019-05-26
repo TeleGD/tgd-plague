@@ -8,19 +8,19 @@ import org.newdawn.slick.state.transition.FadeOutTransition;
 
 public class MainMenu extends Menu{
 
-	public static int ID = -3;	
-	
+	public static int ID = -3;
+
 	public MainMenu(){
 		super.setTitrePrincipal("INSERER TITRE ICI");
 		super.setTitreSecondaire("SOUS TITRE");
-		
+
 		super.setItems(plague.World1.GAME_NAME,smash.World2.GAME_NAME,"Scores", "Quitter");
 
 		super.setEnableClignote(false);
 		super.setCouleurClignote(Color.red);
 		super.setTempsClignote(400);
 	}
-	
+
 	@Override
 	public void onOptionItemFocusedChanged(int position) {
 		time=System.currentTimeMillis();
@@ -45,7 +45,7 @@ public class MainMenu extends Menu{
 			break;
 		}
 	}
-	
+
 	@Override
 	public int getID() {
 		return ID;

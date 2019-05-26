@@ -6,13 +6,13 @@ import org.newdawn.slick.geom.Shape;
 import general.Main;
 
 public abstract class Entity {
-	
+
 	float x,y;
 	double speedX,speedY,speed;
 	int width,height;
 	Shape hitbox;
 	Image sprite;
-	
+
 	public float getX() {
 		return x;
 	}
@@ -61,15 +61,15 @@ public abstract class Entity {
 	public void setSprite(Image sprite) {
 		this.sprite = sprite;
 	}
-	
-	
+
+
 	public void move(int delta){
 		x += speedX*delta;
 		y += speedY*delta;
 		hitbox.setLocation((float)x, (float)y);
 	}
-	
+
 	public abstract void checkForCollision();
-	
+
 	public abstract void die();
 }

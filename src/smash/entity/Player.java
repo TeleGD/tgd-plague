@@ -12,48 +12,48 @@ public class Player extends Entity{
 	private Weapon arme;
 	private int dommage;
 	private boolean droite,gauche,droitegauche;
-	
+
 	public Player(int x, int y) {
-		
+
 	}
-	
-	
+
+
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
 
 	}
 
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
-		
+
 	}
-	
+
 	public void keyPressed(int key, char c) {
 		switch (key) {
-		
+
 		case Input.KEY_Q :
 			gauche=true;
 			droitegauche=true;
 			break;
-		
+
 		case Input.KEY_D :
 			droite=true;
 			droitegauche=false;
 			break;
 		}
 	}
-	
+
 	public void keyReleased(int key, char c) {
 		switch (key) {
-		
+
 		case Input.KEY_Q :
 			gauche=false;
 			break;
-		
+
 		case Input.KEY_D :
 			droite=false;
 			break;
 		}
 	}
-	
+
 	public void move(int delta) {
 		speedX=0;
 		speedY=0;
@@ -63,15 +63,15 @@ public class Player extends Entity{
 		if ((!gauche && droite) || (gauche && droite && !droitegauche)) {
 			speedX=speed;
 		}
-		x+=delta*speedX;		
+		x+=delta*speedX;
 	}
-	
+
 	public void checkForCollision() {
-		
+
 	}
-	
+
 	public void die() {
-		
+
 	}
-	
+
 }

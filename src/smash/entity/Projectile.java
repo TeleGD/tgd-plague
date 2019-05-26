@@ -6,26 +6,26 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
 public class Projectile extends Entity {
-	
+
 	private double degat;
-	
+
 	public Projectile() {
-		
+
 	}
-	
+
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
 
 	}
 
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
-		
+
 	}
-	
+
 	public void checkForCollision() {
-		
+
 	}
-	
+
 	public void die() {
-		
+
 	}
 }
