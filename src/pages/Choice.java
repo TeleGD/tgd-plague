@@ -25,12 +25,7 @@ public class Choice extends AppMenu {
 		this.setMenu (Arrays.asList (new MenuItem [] {
 			new MenuItem ("Plague") {
 				public void itemSelected () {
-					game.enterState (4, new FadeOutTransition (), new FadeInTransition ());
-				}
-			},
-			new MenuItem ("Smash") {
-				public void itemSelected () {
-					game.enterState (5, new FadeOutTransition (), new FadeInTransition ());
+					game.enterState (3, new FadeOutTransition (), new FadeInTransition ());
 				}
 			},
 			new MenuItem ("Retour") {

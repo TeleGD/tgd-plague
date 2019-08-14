@@ -10,13 +10,12 @@ import org.newdawn.slick.state.transition.FadeOutTransition;
 import app.AppMenu;
 import app.elements.MenuItem;
 
+import plague.World;
+
 public class Pause extends AppMenu {
 
-	int gameID;
-
-	public Pause (int ID, int gameID) {
+	public Pause (int ID) {
 		super (ID);
-		this.gameID = gameID;
 	}
 
 	@Override
@@ -28,21 +27,13 @@ public class Pause extends AppMenu {
 		this.setMenu (Arrays.asList (new MenuItem [] {
 			new MenuItem ("Retour") {
 				public void itemSelected () {
-					if (game.getState (Pause.this.gameID) instanceof plague.World) {
-						((plague.World) game.getState (Pause.this.gameID)).setState (2);
-					} else if (game.getState (Pause.this.gameID) instanceof smash.World) {
-						((smash.World) game.getState (Pause.this.gameID)).setState (2);
-					}
-					game.enterState (Pause.this.gameID, new FadeOutTransition (), new FadeInTransition ());
+					((World) game.getState (3)).setState (2);
+					game.enterState (3, new FadeOutTransition (), new FadeInTransition ());
 				}
 			},
 			new MenuItem ("Abandon") {
 				public void itemSelected () {
-					if (game.getState (Pause.this.gameID) instanceof plague.World) {
-						((plague.World) game.getState (Pause.this.gameID)).setState (0);
-					} else if (game.getState (Pause.this.gameID) instanceof smash.World) {
-						((smash.World) game.getState (Pause.this.gameID)).setState (0);
-					}
+					((World) game.getState (3)).setState (0);
 					game.enterState (1, new FadeOutTransition (), new FadeInTransition ());
 				}
 			}

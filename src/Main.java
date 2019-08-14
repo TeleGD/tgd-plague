@@ -11,7 +11,7 @@ import org.newdawn.slick.state.StateBasedGame;
 public final class Main {
 
 	public static final void main (String [] arguments) throws SlickException {
-		String title = "Coding Night 27/01";
+		String title = "Plague";
 		int width = 1280;
 		int height = 720;
 		boolean fullscreen = false;
@@ -45,10 +45,8 @@ public final class Main {
 			public void initStatesList (GameContainer container) {
 				this.addState (new pages.Welcome (0));
 				this.addState (new pages.Choice (1));
-				this.addState (new pages.Pause (2, 4));
-				this.addState (new pages.Pause (3, 5));
-				this.addState (new plague.World (4));
-				this.addState (new smash.World (5));
+				this.addState (new pages.Pause (2));
+				this.addState (new plague.World (3));
 			}
 
 		};
