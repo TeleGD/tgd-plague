@@ -3,8 +3,6 @@ package smash.entity;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.geom.Shape;
 
-import general.Main;
-
 public abstract class Entity {
 
 	float x,y;

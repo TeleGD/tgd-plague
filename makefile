@@ -1,9 +1,9 @@
 build:
 	mkdir -p bin
-	javac -d bin -cp src:res:lib/* src/general/Main.java
+	javac -d bin -cp src:res:lib/* src/Main.java
 
 run:
-	java -cp bin:res:lib/* -Djava.library.path=res/natives general.Main
+	java -cp bin:res:lib/* -Djava.library.path=res/natives Main
 
 archive:
 	mkdir -p zip
