@@ -1,0 +1,2 @@
+- Nathan Barloy (@nathanBarloy)
+- Xavier Indice (@XavierIndice)
