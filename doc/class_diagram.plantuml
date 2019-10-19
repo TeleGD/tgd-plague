@@ -23,6 +23,7 @@ class Skill{
 
 abstract class Node
 
+package nodes{
 class Country{
   String name
   Normal normal
@@ -32,26 +33,27 @@ class Country{
   List<Link> links
 }
 
-abstract class Population{
-  int count
-}
-
-class Normal
-class Believer
-class Recluse
-class Heretic
-
-
-
 abstract class Link{
   double weight
 }
 
+package links{
 class AirLink
-
 class SeaLink
-
 class RoadLink
+}
+}
+
+abstract class Population{
+  int count
+}
+
+package populations{
+class Normal
+class Believer
+class Recluse
+class Heretic
+}
 
 Node <|-- Country
 Node <|-- Link
