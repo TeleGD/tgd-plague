@@ -11,7 +11,7 @@ import org.newdawn.slick.state.StateBasedGame;
 public final class Main {
 
 	public static final void main (String [] arguments) throws SlickException {
-		String title = "Plague";
+		String title = "Sans titre";
 		int width = 1280;
 		int height = 720;
 		boolean fullscreen = false;

@@ -1,68 +1,72 @@
 @startuml
-class World{
+
+class World {
   Player player
   List<Country> countries
 }
 
-class Player{
+class Player {
   int experience
   Religion religion
 }
 
-class Religion{
+class Religion {
   String name
+  double cohesionLevel
+  double isolationLevel
+  double persuasionLevel
   List<Skill> posessedSkills
   List<Skill> unlockedSkills
   List<Skill> lockedSkills
 }
 
-
-class Skill{
+class Skill {
     List<Skill> successors
 }
 
 abstract class Node
 
-package nodes{
-class Country{
-  String name
-  Normal normal
-  Believer believer
-  Recluse recluse
-  Heretic heretic
-  List<Link> links
+package nodes {
+
+    class Country {
+        String name
+        Normal normal
+        Believer believer
+        Recluse recluse
+        Heretic heretic
+        List<Link> links
+    }
+
+    abstract class Link {
+        double weight
+    }
+
+    package links {
+        class AirLink
+        class SeaLink
+        class EarthLink
+    }
+
 }
 
-abstract class Link{
-  double weight
+abstract class Population {
+    int count
 }
 
-package links{
-class AirLink
-class SeaLink
-class RoadLink
-}
-}
-
-abstract class Population{
-  int count
-}
-
-package populations{
-class Normal
-class Believer
-class Recluse
-class Heretic
+package populations {
+    class Normal
+    class Believer
+    class Recluse
+    class Heretic
 }
 
 Node <|-- Country
 Node <|-- Link
 Country "*"--"*" Link
 
-
 Link <|-- AirLink
 Link <|-- SeaLink
-Link <|-- RoadLink
+Link <|-- EarthLink
 
 Country --"1" Normal
 Country --"1" Believer
@@ -75,7 +79,6 @@ Recluse --|> Population
 Heretic --|> Population
 
 World --"*" Country
-
 
 Religion --"*" Skill
 Skill --"*" Skill
