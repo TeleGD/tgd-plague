@@ -28,6 +28,7 @@ abstract class Node
 
 package nodes {
 
+
     class Country {
         String name
         Normal normal
@@ -39,6 +40,7 @@ package nodes {
 
     abstract class Link {
         double weight
+        List<Country> countries
     }
 
     package links {
