@@ -11,11 +11,14 @@ class Player{
 
 class Religion{
   String name
+  List<Skill> posessedSkills
+  List<Skill> unlockedSkills
+  List<Skill> lockedSkills
 }
 
 
-class Improvement{
-    List<Improvement> successors
+class Skill{
+    List<Skill> successors
 }
 
 abstract class Node
@@ -26,6 +29,7 @@ class Country{
   Believer believer
   Recluse recluse
   Heretic heretic
+  List<Link> links
 }
 
 abstract class Population{
@@ -58,21 +62,21 @@ Link <|-- AirLink
 Link <|-- SeaLink
 Link <|-- RoadLink
 
-Country "1"--"1" Normal
-Country "1"--"1" Believer
-Country "1"--"1" Recluse
-Country "1"--"1" Heretic
+Country --"1" Normal
+Country --"1" Believer
+Country --"1" Recluse
+Country --"1" Heretic
 
-Normal <|-- Population
-Believer <|-- Population
-Recluse <|-- Population
-Heretic <|-- Population
+Normal --|> Population
+Believer --|> Population
+Recluse --|> Population
+Heretic --|> Population
 
 World --"*" Country
 
 
-Religion --"*" Improvement
-Improvement --"*" Improvement
+Religion --"*" Skill
+Skill --"*" Skill
 
 Player --"1" Religion
 
