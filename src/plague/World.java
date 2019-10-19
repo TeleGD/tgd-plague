@@ -1,5 +1,7 @@
 package plague;
 
+import java.util.List;
+
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
@@ -8,10 +10,14 @@ import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 
+import plague.nodes.Country;
+
 public class World extends BasicGameState {
 
 	private int ID;
 	private int state;
+	private Player player;
+	private List<Country> countries;
 
 	public World (int ID) {
 		this.ID = ID;
@@ -67,6 +73,7 @@ public class World extends BasicGameState {
 
 	public void play (GameContainer container, StateBasedGame game) {
 		/* Méthode exécutée une unique fois au début du jeu */
+		this.player = new Player();
 	}
 
 	public void pause (GameContainer container, StateBasedGame game) {
