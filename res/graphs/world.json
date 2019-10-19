@@ -1,0 +1,16 @@
+{
+"nodes" : [
+	{
+		"name": "France",
+		"latitude": 41,
+		"longitude": 10,
+		"population": 60e6
+	},
+	{
+		"name": "Japon",
+		"latitude": 39,
+		"longitude": 163,
+		"population": 120e6
+	},
+]
+}
