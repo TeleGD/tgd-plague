@@ -1,19 +1,17 @@
 package plague.nodes;
 
-import java.util.ArrayList;
-
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.state.StateBasedGame;
-
 import plague.Node;
 import plague.World;
-import org.newdawn.slick.state.StateBasedGame;
-import org.newdawn.slick.GameContainer;
+import plague.populations.Believer;
+import plague.populations.Heretic;
+import plague.populations.Normal;
+import plague.populations.Recluse;
 
-import plague.Node;
-import plague.populations.*;
+import java.util.ArrayList;
 
 public class Country extends Node {
 	private String name;
@@ -160,6 +158,16 @@ public class Country extends Node {
 	
 	public void split(double x) {
 		this.change(0, 0, 1, 0, x);
+	}
+
+	/**
+	 * Indique si le curseur de la souris est dans le cercle de ce Country
+	 * @param x
+	 * @param y
+	 * @return
+	 */
+	public boolean isCursorOnCountry(int x, int y) {
+		return (Math.abs(x - this.x) <= size / 2);
 	}
 
 }

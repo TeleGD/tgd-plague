@@ -23,55 +23,55 @@ public class World extends BasicGameState {
 	private List<Country> countries;
 	private float aspectRatio;
 
-	public World (int ID) {
+	public World(int ID) {
 		this.ID = ID;
 		this.state = 0;
 		this.countries = new ArrayList<>();
 	}
 
 	@Override
-	public int getID () {
+	public int getID() {
 		return this.ID;
 	}
 
 	@Override
-	public void init (GameContainer container, StateBasedGame game) {
+	public void init(GameContainer container, StateBasedGame game) {
 		/* Méthode exécutée une unique fois au chargement du programme */
 		this.width = container.getWidth();
 		this.height = container.getHeight();
 		this.aspectRatio = Math.min(container.getWidth() / 1280f, container.getHeight() / 720f);
-		countries.add(new Country((int)1e6, -9, -120, 1, this));
-		countries.add(new Country((int)60e6, 41, 10, 0.7, this));
+		countries.add(new Country((int) 1e6, -9, -120, 1, this));
+		countries.add(new Country((int) 60e6, 41, 10, 0.7, this));
 	}
 
 	@Override
-	public void enter (GameContainer container, StateBasedGame game) {
+	public void enter(GameContainer container, StateBasedGame game) {
 		/* Méthode exécutée à l'apparition de la page */
 		if (this.state == 0) {
-			this.play (container, game);
+			this.play(container, game);
 		} else if (this.state == 2) {
-			this.resume (container, game);
+			this.resume(container, game);
 		}
 	}
 
 	@Override
-	public void leave (GameContainer container, StateBasedGame game) {
+	public void leave(GameContainer container, StateBasedGame game) {
 		/* Méthode exécutée à la disparition de la page */
 		if (this.state == 1) {
-			this.pause (container, game);
+			this.pause(container, game);
 		} else if (this.state == 3) {
-			this.stop (container, game);
+			this.stop(container, game);
 			this.state = 0; // TODO: remove
 		}
 	}
 
 	@Override
-	public void update (GameContainer container, StateBasedGame game, int delta) {
+	public void update(GameContainer container, StateBasedGame game, int delta) {
 		/* Méthode exécutée environ 60 fois par seconde */
-		Input input = container.getInput ();
-		if (input.isKeyDown (Input.KEY_ESCAPE)) {
-			this.setState (1);
-			game.enterState (2, new FadeOutTransition (), new FadeInTransition ());
+		Input input = container.getInput();
+		if (input.isKeyDown(Input.KEY_ESCAPE)) {
+			this.setState(1);
+			game.enterState(2, new FadeOutTransition(), new FadeInTransition());
 		}
 		for (Country c : countries) {
 			c.update(container, game, delta);
@@ -79,39 +79,39 @@ public class World extends BasicGameState {
 	}
 
 	@Override
-	public void render (GameContainer container, StateBasedGame game, Graphics context) {
+	public void render(GameContainer container, StateBasedGame game, Graphics context) {
 		/* Méthode exécutée environ 60 fois par seconde */
 		context.setColor(Color.white);
 		context.fillRect(0, 0, width, height);
 		context.setColor(Color.decode("#4C4C4C"));
-		context.drawString ("oui", 200, 200);
+		context.drawString("oui", 200, 200);
 		for (Country c : countries) {
 			c.render(container, game, context);
 		}
 	}
 
-	public void play (GameContainer container, StateBasedGame game) {
+	public void play(GameContainer container, StateBasedGame game) {
 		/* Méthode exécutée une unique fois au début du jeu */
 //		this.player = new Player();
 	}
 
-	public void pause (GameContainer container, StateBasedGame game) {
+	public void pause(GameContainer container, StateBasedGame game) {
 		/* Méthode exécutée lors de la mise en pause du jeu */
 	}
 
-	public void resume (GameContainer container, StateBasedGame game) {
+	public void resume(GameContainer container, StateBasedGame game) {
 		/* Méthode exécutée lors de la reprise du jeu */
 	}
 
-	public void stop (GameContainer container, StateBasedGame game) {
+	public void stop(GameContainer container, StateBasedGame game) {
 		/* Méthode exécutée une unique fois à la fin du jeu */
 	}
 
-	public void setState (int state) {
+	public void setState(int state) {
 		this.state = state;
 	}
 
-	public int getState () {
+	public int getState() {
 		return this.state;
 	}
 
@@ -125,5 +125,16 @@ public class World extends BasicGameState {
 
 	public void setPlayer(Player player) {
 		this.player = player;
+	}
+
+	//TODO : Ajouter la selection du Country du croyant 0 (Country de départ)
+
+	public Country whichCountryPressed(int x, int y){
+		for (Country country: countries) {
+			if (country.isCursorOnCountry(x, y)){
+				return country;
+			}
+		}
+		return null;
 	}
 }
