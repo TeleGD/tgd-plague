@@ -47,6 +47,7 @@ public final class Main {
 				this.addState (new pages.Choice (1));
 				this.addState (new pages.Pause (2));
 				this.addState (new plague.World (3));
+				this.addState (new pages.NameChoice (4));
 			}
 
 		};
