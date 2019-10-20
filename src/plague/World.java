@@ -1,8 +1,5 @@
 package plague;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -11,8 +8,10 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
-
 import plague.nodes.Country;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class World extends BasicGameState {
 
@@ -22,6 +21,7 @@ public class World extends BasicGameState {
 	private int height;
 	private Player player;
 	private List<Country> countries;
+	private float aspectRatio;
 
 	public World (int ID) {
 		this.ID = ID;
@@ -40,6 +40,7 @@ public class World extends BasicGameState {
 		this.width = container.getWidth();
 		this.height = container.getHeight();
 		countries.add(new Country((int)1e6, 41, 10, this));
+		this.aspectRatio = Math.min(container.getWidth() / 1280f, container.getHeight() / 720f);
 	}
 
 	@Override
@@ -90,7 +91,7 @@ public class World extends BasicGameState {
 
 	public void play (GameContainer container, StateBasedGame game) {
 		/* Méthode exécutée une unique fois au début du jeu */
-		this.player = new Player();
+//		this.player = new Player();
 	}
 
 	public void pause (GameContainer container, StateBasedGame game) {
@@ -112,13 +113,16 @@ public class World extends BasicGameState {
 	public int getState () {
 		return this.state;
 	}
-	
+
 	public int getWidth() {
 		return this.width;
 	}
-	
+
 	public int getHeight() {
 		return this.height;
 	}
 
+	public void setPlayer(Player player) {
+		this.player = player;
+	}
 }
