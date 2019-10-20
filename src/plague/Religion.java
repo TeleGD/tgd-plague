@@ -9,6 +9,7 @@ import org.json.JSONObject;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.state.StateBasedGame;
 
 import app.AppLoader;
@@ -25,6 +26,10 @@ public class Religion {
     private int persuasion;
     private int cohesion;
     
+    private Image imgLocked;
+    private Image imgUnlocked;
+    private Image imgPossessed;
+    
     public Religion(String name) {
     	this.name = name;
     	
@@ -39,6 +44,10 @@ public class Religion {
     	loadSkills();
     	//DEBUG 
     	//System.out.println(lockedSkills.toString());
+
+		imgLocked = app.AppLoader.loadPicture("/res/images/icons/skill_bg_locked.png");
+    	imgUnlocked = app.AppLoader.loadPicture("/res/images/icons/skill_bg_unlocked.png");
+    	imgPossessed = app.AppLoader.loadPicture("/res/images/icons/skill_bg_possessed.png");
     }
     
     // passe un skill de unlocked à possessed si celui-ci était bien unlocked et le player a assez d'exp
@@ -116,18 +125,15 @@ public class Religion {
     }
 	
 	public void render(GameContainer container, StateBasedGame game, Graphics context) {
-		Color red = new Color(255,0,0);
-		Color blue = new Color(0,0,255);
-		Color green = new Color(0,255,0);
-		
+    	
 		for(Skill s: possessedSkills) {
-			s.render(container, game, context, green);
+			s.render(container, game, context, imgPossessed);
 		}
 		for(Skill s: lockedSkills) {
-			s.render(container, game, context, red);
+			s.render(container, game, context, imgLocked);
 		}
 		for(Skill s: unlockedSkills) {
-			s.render(container, game, context, blue);
+			s.render(container, game, context, imgUnlocked);
 		}
 		
 	}

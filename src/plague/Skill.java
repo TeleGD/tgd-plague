@@ -6,6 +6,7 @@ import java.util.List;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.state.StateBasedGame;
 
 public class Skill {
@@ -95,11 +96,8 @@ public class Skill {
 		return id + ", " + name + ", " + description + ", successors:" + successors.toString();
 	}
 
-	public void render(GameContainer container, StateBasedGame game, Graphics context, Color color) {
-		Color currentColor = context.getColor();
-		context.setColor(color);
-		context.fillRect(x, y, width, width);
-		context.setColor(currentColor);
+	public void render(GameContainer container, StateBasedGame game, Graphics context, Image img) {
+		img.draw(x*container.getWidth()/1280,y*container.getWidth()/1280.0f,0.15f*container.getWidth()/1280.0f);
 		
 	}
 
