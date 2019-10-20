@@ -4,8 +4,8 @@ import plague.Population;
 
 public class Normal extends Population {
 
-    public Normal(int count) {
-        super(count);
-    }
+	public Normal(int count) {
+		super(count);
+	}
 
 }
