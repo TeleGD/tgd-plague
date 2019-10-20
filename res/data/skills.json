@@ -1,42 +1,217 @@
 {"skills":
 	[
 		{
-			"id":,
-			"name":"",
-			"description":"",
-			"isolement":,
-			"cohesion":,
-			"persuasion":,
-			"experienceNeeded":,
+			"id": 1,
+			"name":"Porte à porte",
+			"description":"Vos adeptes se déplacent dans le voisinage pour répandre votre parole. Augmente votre persuasion.",
+			"isolement": 0,
+			"cohesion": 0,
+			"persuasion": 4,
+			"experienceNeeded": 1,
 			"successors":
 				[
 					{
-						"id":
+						"id": 4
 					},
 					{
-						"id":
+						"id": 5
+					},
+					{
+						"id": 10
 					}
 				],
-			"unlocked":
+			"unlocked": 1
 		},
 		{
-			"id":,
-			"name":"",
-			"description":"",
-			"isolement":,
-			"cohesion":,
-			"persuasion":,
-			"experienceNeeded":,
+			"id": 2,
+			"name":"Réunion",
+			"description":"Vos adeptes se réunissent pour un moment de partage. Augmente votre cohésion.",
+			"isolement": 0,
+			"cohesion": 4,
+			"persuasion": 0,
+			"experienceNeeded": 1,
 			"successors":
 				[
 					{
-						"id":
+						"id": 6
 					},
 					{
-						"id":
+						"id": 7
 					},
+					{
+						"id": 8
+					}
 				],
-			"unlocked":
+			"unlocked": 1
+		},
+		{
+			"id": 3,
+			"name":"Tenue",
+			"description":"Vos adeptes arborent un magnifique vêtement de culte. Augmente votre isolement.",
+			"isolement": 4,
+			"cohesion": 0,
+			"persuasion": 0,
+			"experienceNeeded": 1,
+			"successors":
+				[
+					{
+						"id": 8
+					},
+					{
+						"id": 9
+					},
+					{
+						"id": 10
+					}
+				],
+			"unlocked": 1
+		},
+		{
+			"id": 4,
+			"name":"Rumeur",
+			"description":"Des rumeurs circulent à votre sujet. Augmente votre persuasion.",
+			"isolement": 0,
+			"cohesion": 0,
+			"persuasion": 4,
+			"experienceNeeded": 1,
+			"successors":
+				[
+					{
+						"id": 11
+					},
+					{
+						"id": 12
+					}
+				],
+			"unlocked": 0
+		},
+		{
+			"id": 5,
+			"name":"Manifestation",
+			"description":"Il s'agit de moments de joie et de partage entre sectaires. Augmente votre persuasion et votre cohésion.",
+			"isolement": 0,
+			"cohesion": 2,
+			"persuasion": 2,
+			"experienceNeeded": 1,
+			"successors":
+				[
+					{
+						"id": 13
+					}
+				],
+			"unlocked": 0
+		},
+		{
+			"id": 6,
+			"name":"Structuration",
+			"description":"Votre secte méritait un bel organigramme. Augmente votre cohésion.",
+			"isolement": 0,
+			"cohesion": 4,
+			"persuasion": 0,
+			"experienceNeeded": 1,
+			"successors":
+				[
+					{
+						"id": 14
+					}
+				],
+			"unlocked": 0
+		},
+		{
+			"id": 7,
+			"name":"Pélerinage",
+			"description":"Rien de tel pour souder votre secte. Augmente votre cohésion.",
+			"isolement": 0,
+			"cohesion": 4,
+			"persuasion": 0,
+			"experienceNeeded": 1,
+			"successors":
+				[
+					{
+						"id": 14
+					}
+				],
+			"unlocked": 0
+		},
+		{
+			"id": 8,
+			"name":"Cérémonie",
+			"description":"Une cérémonie très solennelle dont vous êtes fier. Augmente votre isolement et votre cohésion.",
+			"isolement": 2,
+			"cohesion": 2,
+			"persuasion": 0,
+			"experienceNeeded": 1,
+			"successors":
+				[
+					{
+						"id": 15
+					},
+					{
+						"id": 16
+					}
+				],
+			"unlocked": 0
+		},
+		{
+			"id": 9,
+			"name":"Gourou",
+			"description":"Il grandit si vite, un vrai petit chef de secte. Augmente votre isolement.",
+			"isolement": 4,
+			"cohesion": 0,
+			"persuasion": 0,
+			"experienceNeeded": 1,
+			"successors":
+				[
+					{
+						"id": 17
+					}
+				],
+			"unlocked": 0
+		},
+		{
+			"id": 10,
+			"name":"Défilé",
+			"description":"A la fois engagé et fashion. Augmente votre persuasion et votre isolement.",
+			"isolement": 2,
+			"cohesion": 0,
+			"persuasion": 2,
+			"experienceNeeded": 1,
+			"successors":
+				[
+				],
+			"unlocked": 0
+		},
+		{
+			"id": 11,
+			"name":"Missionnaire",
+			"description":"Il répand la bonne parole : la vôtre. Augmente grandement votre persuasion.",
+			"isolement": 0,
+			"cohesion": 0,
+			"persuasion": 10,
+			"experienceNeeded": 2,
+			"successors":
+				[
+					{
+						"id": 23
+					}
+				],
+			"unlocked": 0
+		},
+		{
+			"id": 12,
+			"name":"Propagande",
+			"description":"C'est toujours des rumeurs, mais vous les lancez vous-même. Augmente grandement votre persuasion.",
+			"isolement": 0,
+			"cohesion": 0,
+			"persuasion": 10,
+			"experienceNeeded": 2,
+			"successors":
+				[
+					{
+						"id": 23
+					}
+				],
+			"unlocked": 0
 		}
 	]
 }
