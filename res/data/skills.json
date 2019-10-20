@@ -4,7 +4,7 @@
 			"id": 1,
 			"name":"Porte à porte",
 			"description":"Vos adeptes se déplacent dans le voisinage pour répandre votre parole. Augmente votre persuasion.",
-			"isolement": 0,
+			"radicalisation": 0,
 			"cohesion": 0,
 			"persuasion": 4,
 			"experienceNeeded": 1,
@@ -26,7 +26,7 @@
 			"id": 2,
 			"name":"Réunion",
 			"description":"Vos adeptes se réunissent pour un moment de partage. Augmente votre cohésion.",
-			"isolement": 0,
+			"radicalisation": 0,
 			"cohesion": 4,
 			"persuasion": 0,
 			"experienceNeeded": 1,
@@ -47,8 +47,8 @@
 		{
 			"id": 3,
 			"name":"Tenue",
-			"description":"Vos adeptes arborent un magnifique vêtement de culte. Augmente votre isolement.",
-			"isolement": 4,
+			"description":"Vos adeptes arborent un magnifique vêtement de culte. Augmente votre radicalisation.",
+			"radicalisation": 4,
 			"cohesion": 0,
 			"persuasion": 0,
 			"experienceNeeded": 1,
@@ -70,7 +70,7 @@
 			"id": 4,
 			"name":"Rumeur",
 			"description":"Des rumeurs circulent à votre sujet. Augmente votre persuasion.",
-			"isolement": 0,
+			"radicalisation": 0,
 			"cohesion": 0,
 			"persuasion": 4,
 			"experienceNeeded": 1,
@@ -89,7 +89,7 @@
 			"id": 5,
 			"name":"Manifestation",
 			"description":"Il s'agit de moments de joie et de partage entre sectaires. Augmente votre persuasion et votre cohésion.",
-			"isolement": 0,
+			"radicalisation": 0,
 			"cohesion": 2,
 			"persuasion": 2,
 			"experienceNeeded": 1,
@@ -105,7 +105,7 @@
 			"id": 6,
 			"name":"Structuration",
 			"description":"Votre secte méritait un bel organigramme. Augmente votre cohésion.",
-			"isolement": 0,
+			"radicalisation": 0,
 			"cohesion": 4,
 			"persuasion": 0,
 			"experienceNeeded": 1,
@@ -121,7 +121,7 @@
 			"id": 7,
 			"name":"Pélerinage",
 			"description":"Rien de tel pour souder votre secte. Augmente votre cohésion.",
-			"isolement": 0,
+			"radicalisation": 0,
 			"cohesion": 4,
 			"persuasion": 0,
 			"experienceNeeded": 1,
@@ -136,8 +136,8 @@
 		{
 			"id": 8,
 			"name":"Cérémonie",
-			"description":"Une cérémonie très solennelle dont vous êtes fier. Augmente votre isolement et votre cohésion.",
-			"isolement": 2,
+			"description":"Une cérémonie très solennelle dont vous êtes fier. Augmente votre radicalisation et votre cohésion.",
+			"radicalisation": 2,
 			"cohesion": 2,
 			"persuasion": 0,
 			"experienceNeeded": 1,
@@ -155,8 +155,8 @@
 		{
 			"id": 9,
 			"name":"Gourou",
-			"description":"Il grandit si vite, un vrai petit chef de secte. Augmente votre isolement.",
-			"isolement": 4,
+			"description":"Il grandit si vite, un vrai petit chef de secte. Augmente votre radicalisation.",
+			"radicalisation": 4,
 			"cohesion": 0,
 			"persuasion": 0,
 			"experienceNeeded": 1,
@@ -171,8 +171,8 @@
 		{
 			"id": 10,
 			"name":"Défilé",
-			"description":"A la fois engagé et fashion. Augmente votre persuasion et votre isolement.",
-			"isolement": 2,
+			"description":"A la fois engagé et fashion. Augmente votre persuasion et votre radicalisation.",
+			"radicalisation": 2,
 			"cohesion": 0,
 			"persuasion": 2,
 			"experienceNeeded": 1,
@@ -185,7 +185,7 @@
 			"id": 11,
 			"name":"Missionnaire",
 			"description":"Il répand la bonne parole : la vôtre. Augmente grandement votre persuasion.",
-			"isolement": 0,
+			"radicalisation": 0,
 			"cohesion": 0,
 			"persuasion": 10,
 			"experienceNeeded": 2,
@@ -201,7 +201,7 @@
 			"id": 12,
 			"name":"Propagande",
 			"description":"C'est toujours des rumeurs, mais vous les lancez vous-même. Augmente grandement votre persuasion.",
-			"isolement": 0,
+			"radicalisation": 0,
 			"cohesion": 0,
 			"persuasion": 10,
 			"experienceNeeded": 2,
@@ -210,6 +210,164 @@
 					{
 						"id": 23
 					}
+				],
+			"unlocked": 0
+		},
+		{
+			"id": 13,
+			"name":"Festival",
+			"description":"Ce festival fait référence dans le milieu des sectes. Augmente votre persuasion et votre cohésion.",
+			"radicalisation": 0,
+			"cohesion": 6,
+			"persuasion": 4,
+			"experienceNeeded": 2,
+			"successors":
+				[
+				],
+			"unlocked": 0
+		},
+		{
+			"id": 14,
+			"name":"Prophète",
+			"description":"Il anime à merveille votre séminaire de Pâques. Augmente votre cohésion et votre radicalisation.",
+			"radicalisation": 4,
+			"cohesion": 6,
+			"persuasion": 0,
+			"experienceNeeded": 2,
+			"successors":
+				[
+				],
+			"unlocked": 0
+		},
+		{
+			"id": 15,
+			"name":"Temple",
+			"description":"On y est à l'aise pour écouter votre parole. Augmente votre cohésion et votre radicalisation.",
+			"radicalisation": 5,
+			"cohesion": 5,
+			"persuasion": 0,
+			"experienceNeeded": 2,
+			"successors":
+				[
+					{
+						"id": 21
+					},
+					{
+						"id": 22
+					}
+				],
+			"unlocked": 0
+		},
+		{
+			"id": 16,
+			"name":"Rituel",
+			"description":"Des fois ça se passe bien. Augmente votre radicalisation et votre cohésion.",
+			"radicalisation": 8,
+			"cohesion": 0,
+			"persuasion": 2,
+			"experienceNeeded": 2,
+			"successors":
+				[
+					{
+						"id": 20
+					}
+				],
+			"unlocked": 0
+		},
+		{
+			"id": 17,
+			"name":"Martyr",
+			"description":"C'est pour la bonne cause. Augmente grandement votre radicalisation.",
+			"radicalisation": 10,
+			"cohesion": 0,
+			"persuasion": 0,
+			"experienceNeeded": 2,
+			"successors":
+				[
+					{
+						"id": 18
+					}
+				],
+			"unlocked": 0
+		},
+		{
+			"id": 18,
+			"name":"Milice",
+			"description":"Pour protéger vos adeptes, rien de plus. Augmente grandement votre radicalisation en dépit de votre persuasion.",
+			"radicalisation": 18,
+			"cohesion": 0,
+			"persuasion": -6,
+			"experienceNeeded": 2,
+			"successors":
+				[
+					{
+						"id": 19
+					}
+				],
+			"unlocked": 0
+		},
+		{
+			"id": 19,
+			"name":"Croisade",
+			"description":"Deus vult. Augmente grandement votre radicalisation et votre cohesion en dépit de votre persuasion.",
+			"radicalisation": 20,
+			"cohesion": 8,
+			"persuasion": -6,
+			"experienceNeeded": 3,
+			"successors":
+				[
+				],
+			"unlocked": 0
+		},
+		{
+			"id": 20,
+			"name":"Lieu de culte",
+			"description":"Ce qui se passe au lieu de culte, reste au lieu de culte. Augmente votre radicalisation et votre cohésion.",
+			"radicalisation": 7,
+			"cohesion": 3,
+			"persuasion": 0,
+			"experienceNeeded": 2,
+			"successors":
+				[
+				],
+			"unlocked": 0
+		},
+		{
+			"id": 21,
+			"name":"Idolâtrie",
+			"description":"Aucun blasphème ne sera toléré. Augmente votre cohésion et votre radicalisation.",
+			"radicalisation": 6,
+			"cohesion": 12,
+			"persuasion": 0,
+			"experienceNeeded": 3,
+			"successors":
+				[
+				],
+			"unlocked": 0
+		},
+		{
+			"id": 22,
+			"name":"Offrandes",
+			"description":"Même périmé ça passe. Augmente grandement votre cohésion en dépit de votre radicalisation.",
+			"radicalisation": -4,
+			"cohesion": 18,
+			"persuasion": 0,
+			"experienceNeeded": 3,
+			"successors":
+				[
+				],
+			"unlocked": 0
+		},
+		{
+			"id": 23,
+			"name":"Miracle",
+			"description":"Certifié par vous-même. Augmente tout, en particulier votre persuasion.",
+			"radicalisation": 10,
+			"cohesion": 10,
+			"persuasion": 15,
+			"experienceNeeded": 4,
+			"successors":
+				[
 				],
 			"unlocked": 0
 		}

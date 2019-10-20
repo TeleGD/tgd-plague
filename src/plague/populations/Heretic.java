@@ -4,7 +4,7 @@ import plague.Population;
 
 public class Heretic extends Population {
 
-	public Heretic(int count) {
+	public Heretic(double count) {
 		super(count);
 	}
 
