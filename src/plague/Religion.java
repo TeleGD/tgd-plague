@@ -6,6 +6,11 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.newdawn.slick.Color;
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
+import org.newdawn.slick.state.StateBasedGame;
 
 import app.AppLoader;
 
@@ -21,6 +26,10 @@ public class Religion {
     private int persuasion;
     private int cohesion;
     
+    private Image imgLocked;
+    private Image imgUnlocked;
+    private Image imgPossessed;
+    
     public Religion(String name) {
     	this.name = name;
     	
@@ -35,6 +44,10 @@ public class Religion {
     	loadSkills();
     	//DEBUG 
     	//System.out.println(lockedSkills.toString());
+
+		imgLocked = app.AppLoader.loadPicture("/res/images/icons/skill_bg_locked.png");
+    	imgUnlocked = app.AppLoader.loadPicture("/res/images/icons/skill_bg_unlocked.png");
+    	imgPossessed = app.AppLoader.loadPicture("/res/images/icons/skill_bg_possessed.png");
     }
     
     // passe un skill de unlocked à possessed si celui-ci était bien unlocked et le player a assez d'exp
@@ -80,6 +93,8 @@ public class Religion {
                 Skill skill = new Skill();
 
                 if(objSkill.get("id") != null) skill.setId((int) objSkill.get("id"));
+                if(objSkill.get("x") != null) skill.setX((int) objSkill.get("x"));
+                if(objSkill.get("y") != null) skill.setY((int) objSkill.get("y"));
                 if(objSkill.get("isolement") != null) skill.setIsolement((int) objSkill.get("isolement"));
                 if(objSkill.get("persuasion") != null) skill.setPersuasion((int) objSkill.get("persuasion"));
                 if(objSkill.get("cohesion") != null) skill.setCohesion((int) objSkill.get("cohesion"));
@@ -108,4 +123,18 @@ public class Religion {
             }
 		} catch (JSONException e) {}
     }
+	
+	public void render(GameContainer container, StateBasedGame game, Graphics context) {
+    	
+		for(Skill s: possessedSkills) {
+			s.render(container, game, context, imgPossessed);
+		}
+		for(Skill s: lockedSkills) {
+			s.render(container, game, context, imgLocked);
+		}
+		for(Skill s: unlockedSkills) {
+			s.render(container, game, context, imgUnlocked);
+		}
+		
+	}
 }
