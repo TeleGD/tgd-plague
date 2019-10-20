@@ -106,9 +106,12 @@ public class Skill {
 		return id + ", " + name + ", " + description + ", successors:" + successors.toString();
 	}
 
-	public void render(GameContainer container, StateBasedGame game, Graphics context, Image img) {
+	public void render(GameContainer container, StateBasedGame game, Graphics context, Image img, float transparency) {
 		img.draw(x*container.getWidth()/1280.0f,y*container.getWidth()/1280.0f,0.15f*container.getWidth()/1280.0f);
-		this.img.draw(x*container.getWidth()/1280.0f,y*container.getWidth()/1280.0f,0.15f*container.getWidth()/1280.0f);
+		
+		Color filter = new Color(1f, 1f, 1f, transparency);
+		this.img.draw(x*container.getWidth()/1280.0f,y*container.getWidth()/1280.0f,0.15f*container.getWidth()/1280.0f, filter);
+		
 		realX = x*container.getWidth()/1280.0f;
 		realY = y*container.getWidth()/1280.0f;
 		realScale = 0.15f*container.getWidth()/1280.0f;

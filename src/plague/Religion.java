@@ -121,13 +121,13 @@ public class Religion {
 	public void render(GameContainer container, StateBasedGame game, Graphics context) {
     	
 		for(Skill s: possessedSkills) {
-			s.render(container, game, context, imgPossessed);
+			s.render(container, game, context, imgPossessed, 1.0f);
 		}
 		for(Skill s: lockedSkills) {
-			s.render(container, game, context, imgLocked);
+			s.render(container, game, context, imgLocked, 0.6f);
 		}
 		for(Skill s: unlockedSkills) {
-			s.render(container, game, context, imgUnlocked);
+			s.render(container, game, context, imgUnlocked, 1.0f);
 		}
 		
 	}
