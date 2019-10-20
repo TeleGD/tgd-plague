@@ -40,7 +40,7 @@ public class World extends BasicGameState {
 		this.width = container.getWidth();
 		this.height = container.getHeight();
 		this.aspectRatio = Math.min(container.getWidth() / 1280f, container.getHeight() / 720f);
-		countries.add(new Country((int)1e6, -9, -120, 1, this));
+		countries.add(new Country((int)1e9, -9, -120, 1, this));
 		countries.add(new Country((int)60e6, 41, 10, 0.7, this));
 	}
 
@@ -84,7 +84,8 @@ public class World extends BasicGameState {
 		context.setColor(Color.white);
 		context.fillRect(0, 0, width, height);
 		context.setColor(Color.decode("#4C4C4C"));
-		context.drawString ("oui", 200, 200);
+		String title = "Propagation de la religion "+"<<NAME>>";
+		context.drawString (title, (width-context.getFont().getWidth(title))/2, 24);
 		for (Country c : countries) {
 			c.render(container, game, context);
 		}
@@ -125,5 +126,9 @@ public class World extends BasicGameState {
 
 	public void setPlayer(Player player) {
 		this.player = player;
+	}
+	
+	void loadGraph(String jsonPath) {
+		
 	}
 }

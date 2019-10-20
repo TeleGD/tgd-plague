@@ -44,7 +44,8 @@ public class Country extends Node {
 			new double[]{0, 0, 1, 0},
 			new double[]{0, 0, 0, 1}
 		};
-		this.size = (float) Math.pow(Math.log(population), 3);
+		this.size = (float) Math.sqrt(population)/60;
+		//this.size = (float) Math.pow(Math.log(population), 3);
 		this.credulity = credulity;
 		this.latitude = latitude;
 		this.longitude = longitude;
@@ -132,7 +133,7 @@ public class Country extends Node {
 	
 	public void render (GameContainer container, StateBasedGame game, Graphics context) {
 		context.setColor(this.color);
-		context.fillOval(x-size/64, y-size/64, size/32, size/32);
+		context.fillOval(x-size/2, y-size/2, size, size);
 		context.setColor(Color.white);
 		context.setLineWidth(2);
 		int n = 64;
@@ -140,7 +141,7 @@ public class Country extends Node {
 		for (int i = 0; i < n; i+=2) {
 			theta1 = 2*Math.PI*(this.dashesStart+(double)i/n);
 			theta2 = 2*Math.PI*(this.dashesStart+(double)(i+1)/n);
-			context.drawLine((float)(x+size/72*Math.cos(theta1)), (float)(y-size/72*Math.sin(theta1)), (float)(x+size/72*Math.cos(theta2)), (float)(y-size/72*Math.sin(theta2)));;
+			context.drawLine((float)(x+size/2.25*Math.cos(theta1)), (float)(y-size/2.25*Math.sin(theta1)), (float)(x+size/2.25*Math.cos(theta2)), (float)(y-size/2.25*Math.sin(theta2)));;
 		}
 		context.drawString(""+(int)(this.rate*100)+"%", x-12, y-8);
 	}
