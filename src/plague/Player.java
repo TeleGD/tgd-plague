@@ -15,16 +15,15 @@ public class Player {
         experience = 0;
     }
 
-	public void update(GameContainer container, StateBasedGame game, int delta) {
-//		Input input = container.getInput();
-//		
-//		if(input.isMousePressed(0)) {
-//			experience -= religion.clickOnSkill(input.getMouseX(),input.getMouseY(), experience);
-//		}
+	public void updateFromSkillPage(GameContainer container, StateBasedGame game, int delta) {
+		Input input = container.getInput();
+		
+		if(input.isMousePressed(0)) {
+			experience -= religion.clickOnSkill(input.getMouseX(),input.getMouseY(), experience);
+		}
 	}
 
-	public void render(GameContainer container, StateBasedGame game, Graphics context) {
-//		religion.render(container, game, context);
-//		
+	public void renderFromKillPage(GameContainer container, StateBasedGame game, Graphics context) {
+		religion.render(container, game, context);	
 	}
 }

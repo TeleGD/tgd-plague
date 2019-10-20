@@ -21,12 +21,12 @@ public class SkillPage extends BasicGameState {
 
 	@Override
 	public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
-
+		player.renderFromKillPage(gameContainer, stateBasedGame, graphics);
 	}
 
 	@Override
 	public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int i) throws SlickException {
-
+		player.updateFromSkillPage(gameContainer, stateBasedGame, i);
 	}
 
 	public void setPlayer(Player player) {
