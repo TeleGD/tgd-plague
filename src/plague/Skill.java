@@ -77,4 +77,8 @@ public class Skill {
 	public List<Integer> getSuccessors() {
 		return this.successors;
 	}
+	
+	public String toString() {
+		return id + ", " + name + ", " + description + ", successors:" + successors.toString();
+	}
 }
