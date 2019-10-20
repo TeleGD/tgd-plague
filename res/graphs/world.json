@@ -1,14 +1,26 @@
-[
-	{
-		"name": "France",
-		"latitude": 41,
-		"longitude": 10,
-		"population": 60e6
-	},
-	{
-		"name": "Japon",
-		"latitude": 39,
-		"longitude": 163,
-		"population": 120e6
-	},
-]
+{
+	"nodes":
+	[
+		{
+			"id": 0,
+			"name": "France",
+			"latitude": 41,
+			"longitude": 10,
+			"population": 60e6
+		},
+		{
+			"id": 1,
+			"name": "Japon",
+			"latitude": 39,
+			"longitude": 163,
+			"population": 120e6
+		},
+	],
+	"links":
+	[
+		{
+			"weight": 0.4,
+			"countries": [0, 1]
+		}
+	]
+}
