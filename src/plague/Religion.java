@@ -52,22 +52,15 @@ public class Religion {
     
     // passe un skill de unlocked à possessed si celui-ci était bien unlocked et le player a assez d'exp
     // retourne le nombre d'exp à enlever au player.
-    public int activeSkill(int id, int playerExp) {
-    	for(int i=0; i<unlockedSkills.size(); i++) {
-    		if(unlockedSkills.get(i).getId() == id && unlockedSkills.get(i).getExperienceNeeded()<=playerExp) {
-    			Skill activatedSkill = unlockedSkills.get(i);
-    			unlockSuccessors(activatedSkill);
-    			possessedSkills.add(activatedSkill);
-    			unlockedSkills.remove(activatedSkill);
-    			isolement += activatedSkill.getIsolement();
-    			persuasion += activatedSkill.getPersuasion();
-    			cohesion += activatedSkill.getCohesion();
+    public int activeSkill(Skill activatedSkill, int playerExp) {
+    	unlockSuccessors(activatedSkill);
+    	possessedSkills.add(activatedSkill);
+    	unlockedSkills.remove(activatedSkill);
+    	isolement += activatedSkill.getIsolement();
+    	persuasion += activatedSkill.getPersuasion();
+    	cohesion += activatedSkill.getCohesion();
     			
-    			return(activatedSkill.getExperienceNeeded());
-    		}
-    	}
-    		
-    	return 0;
+    	return(activatedSkill.getExperienceNeeded());
     }
     
     private void unlockSuccessors(Skill skill) {
@@ -101,6 +94,7 @@ public class Religion {
                 if(objSkill.get("experienceNeeded") != null) skill.setExperienceNeeded((int) objSkill.get("experienceNeeded"));
                 if(objSkill.get("name") != null) skill.setName((String) objSkill.get("name"));
                 if(objSkill.get("description") != null) skill.setDescription((String) objSkill.get("description"));
+                if(objSkill.get("imgPath") != null) skill.setImage((String) objSkill.get("imgPath"));
                 
                 JSONArray jsonSuccessors = (JSONArray) objSkill.get("successors");
                 for(int j = 0; j < jsonSuccessors.length(); j++)
@@ -136,5 +130,20 @@ public class Religion {
 			s.render(container, game, context, imgUnlocked);
 		}
 		
+	}
+
+	public int clickOnSkill(int mouseX, int mouseY, int playerExp) {
+		Skill clickedSkill = null;
+		for(Skill s: unlockedSkills) {
+			if(s.contains(mouseX, mouseY) && playerExp>=s.getExperienceNeeded()) {
+				clickedSkill = s;
+				break;
+			}
+		}
+		
+		if(clickedSkill == null)
+			return 0;
+		else
+			return activeSkill(clickedSkill,playerExp);
 	}
 }

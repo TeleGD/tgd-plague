@@ -1,12 +1,10 @@
-import java.awt.DisplayMode;
-import java.awt.GraphicsEnvironment;
-
-import javax.swing.JOptionPane;
-
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
+
+import javax.swing.*;
+import java.awt.*;
 
 public final class Main {
 
@@ -48,6 +46,7 @@ public final class Main {
 				this.addState (new pages.Pause (2));
 				this.addState (new plague.World (3));
 				this.addState (new pages.NameChoice (4));
+				this.addState (new plague.SkillPage (5));
 			}
 
 		};
