@@ -100,14 +100,28 @@ public class TextField {
 		int caret = this.getCaret();
 		switch (key) {
 			case Input.KEY_BACK: {
-				if (caret > 0) {
-					String start = text.substring(0, caret - 1);
-					String end = text.substring(caret);
-					this.setCaret(caret - 1);
+				int length = text.length();
+				System.out.println("Caret :"+caret+"\nlength : "+length);
+				if (caret < length) {
+					if (caret>0) {
+						this.setCaret(caret - 1);
+					}
+					String start = text.substring(0, caret);
+					String end = text.substring(caret+1);
+					this.setText(start + end);
 				}
-				return;
+				else if (caret == length) {
+					if(caret>0) {
+						this.setCaret(length-1);
+						String start = text.substring(0, caret-1);
+//						String end = text.substring(caret+1);
+						this.setText(start);
+					}
+				}
+			return;
 			}
 			case Input.KEY_LEFT: {
+				System.out.println("Left.");
 				if (caret > 0) {
 					this.setCaret(caret - 1);
 				}
@@ -122,6 +136,7 @@ public class TextField {
 			}
 			case Input.KEY_DELETE: {
 				int length = text.length();
+				System.out.println("DeLEEEEEEETE !");
 				if (caret < length) {
 					String start = text.substring(0, caret);
 					String end = text.substring(caret + 1);
