@@ -45,13 +45,30 @@ public class Country extends Node {
 		};
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 4; j++) {
-				outputVector[i] += matrix[i][j] * inputVector[j];
+				outputVector[i] += this.matrix[i][j] * inputVector[j];
 			}
 		}
 		this.believer.setCount(outputVector[0]);
 		this.heretic.setCount(outputVector[1]);
 		this.normal.setCount(outputVector[2]);
 		this.recluse.setCount(outputVector[3]);
+	}
+	
+	private void change(int i1, int j1, int i2, int j2, double x) {
+		this.matrix[i1][j1] -= x;
+		this.matrix[i2][j2] += x;
+	}
+	
+	public void persuade(double x) {
+		this.change(2, 2, 0, 2, x);
+	}
+	
+	public void isolate(double x) {
+		this.change(0, 0, 3, 0, x);
+	}
+	
+	public void split(double x) {
+		this.change(0, 0, 1, 0, x);
 	}
 
 }
