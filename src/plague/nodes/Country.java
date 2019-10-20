@@ -1,12 +1,16 @@
 package plague.nodes;
 
 import java.util.ArrayList;
+//import java.lang.Math.cos;
+import java.lang.*;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.state.StateBasedGame;
 
+import app.AppLoader;
 import plague.Node;
 import plague.World;
 import org.newdawn.slick.state.StateBasedGame;
@@ -142,6 +146,7 @@ public class Country extends Node {
 			theta2 = 2*Math.PI*(this.dashesStart+(double)(i+1)/n);
 			context.drawLine((float)(x+size/72*Math.cos(theta1)), (float)(y-size/72*Math.sin(theta1)), (float)(x+size/72*Math.cos(theta2)), (float)(y-size/72*Math.sin(theta2)));;
 		}
+		this.drawing(context);
 	}
 	
 	private void change(int i1, int j1, int i2, int j2, double x) {
@@ -161,4 +166,26 @@ public class Country extends Node {
 		this.change(0, 0, 1, 0, x);
 	}
 
+	public void drawing(Graphics context) {
+		//Image img = AppLoader.loadPicture("/res/images/icons/country_bg_untouched.png").copy();
+		double x = 50;
+		double y = 50;
+		context.setColor(Color.red);
+		double tot = normal.getCount()+believer.getCount()+recluse.getCount()+heretic.getCount();
+		for (int i=0;i<x;i++) {
+			for (int j=0;j<y;j++) {
+				double x2 = (2*i/x-1);
+				double y2 = (2*j/y-1);
+				if (x2*x2 + y2*y2 < 1) {
+					if (Math.atan2(y2, x2) > 0 && Math.atan2(y2, x2) < 1 /*Math.atan(normal.getCount()/tot)*/) {
+						context.fillRect(i,j,1,1);
+					}
+				}
+			}
+			//context.fillRect((float)200,(float)200,(float)40,(float)40);
+		//for ( int i=0 ; i<4 ; i++) {
+			
+			
+		}
+	}
 }
