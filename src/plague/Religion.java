@@ -6,6 +6,10 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.newdawn.slick.Color;
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.state.StateBasedGame;
 
 import app.AppLoader;
 
@@ -108,4 +112,21 @@ public class Religion {
             }
 		} catch (JSONException e) {}
     }
+	
+	public void render(GameContainer container, StateBasedGame game, Graphics context) {
+		Color red = new Color(255,0,0);
+		Color blue = new Color(0,0,255);
+		Color green = new Color(0,255,0);
+		
+		for(Skill s: possessedSkills) {
+			s.render(container, game, context, green);
+		}
+		for(Skill s: lockedSkills) {
+			s.render(container, game, context, red);
+		}
+		for(Skill s: unlockedSkills) {
+			s.render(container, game, context, blue);
+		}
+		
+	}
 }
