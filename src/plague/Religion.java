@@ -36,8 +36,40 @@ public class Religion {
     	loadSkills();
     }
     
-    private void loadSkills() {
-    	String load = AppLoader.restoreData("/res/data/skills.json");
+    // passe un skill de unlocked à possessed si celui-ci était bien unlocked et le player a assez d'exp
+    // retourne le nombre d'exp à enlever au player.
+    public int activeSkill(int id, int playerExp) {
+    	for(int i=0; i<unlockedSkills.size(); i++) {
+    		if(unlockedSkills.get(i).getId() == id && unlockedSkills.get(i).getExperienceNeeded()<=playerExp) {
+    			Skill activatedSkill = unlockedSkills.get(i);
+    			unlockSuccessors(activatedSkill);
+    			possessedSkills.add(activatedSkill);
+    			unlockedSkills.remove(activatedSkill);
+    			isolement += activatedSkill.getIsolement();
+    			persuasion += activatedSkill.getPersuasion();
+    			cohesion += activatedSkill.getCohesion();
+    			
+    			return(activatedSkill.getExperienceNeeded());
+    		}
+    	}
+    		
+    	return 0;
+    }
+    
+    private void unlockSuccessors(Skill skill) {
+		for(Integer id: skill.getSuccessors()) {
+			for(int i=0; i<lockedSkills.size(); i++) {
+				if(lockedSkills.get(i).getId() == id) {
+					unlockedSkills.add(lockedSkills.get(i));
+					lockedSkills.remove(i);
+					i=lockedSkills.size();
+				}
+			}
+		}
+	}
+
+	private void loadSkills() {
+    	String load = AppLoader.loadData("/res/data/skills.json");
 		try {
 			JSONObject json = new JSONObject (load);
 
@@ -53,6 +85,8 @@ public class Religion {
                 if(objSkill.get("persuasion") != null) skill.setPersuasion((int)(long) objSkill.get("persuasion"));
                 if(objSkill.get("cohesion") != null) skill.setCohesion((int)(long) objSkill.get("cohesion"));
                 if(objSkill.get("experienceNeeded") != null) skill.setExperienceNeeded((int)(long) objSkill.get("experienceNeeded"));
+                if(objSkill.get("name") != null) skill.setName((String) objSkill.get("name"));
+                if(objSkill.get("description") != null) skill.setDescription((String) objSkill.get("description"));
                 
                 JSONArray jsonSuccessors = (JSONArray) objSkill.get("successors");
                 Iterator j = ((List<Skill>) jsonSuccessors).iterator();
@@ -69,6 +103,8 @@ public class Religion {
                 	} else {
                 		lockedSkills.add(skill);
                 	}
+                } else {
+                	lockedSkills.add(skill);
                 }
             }
 		} catch (JSONException e) {}
