@@ -72,6 +72,10 @@ public class World extends BasicGameState {
 		if (input.isKeyDown(Input.KEY_ESCAPE)) {
 			this.setState(1);
 			game.enterState(2, new FadeOutTransition(), new FadeInTransition());
+		} else if (input.isKeyDown(Input.KEY_K)){
+			((SkillPage) game.getState (5)).setPlayer(player);
+			this.setState(1);
+			game.enterState(5,new FadeOutTransition(), new FadeInTransition());
 		}
 		for (Country c : countries) {
 			c.update(container, game, delta);
