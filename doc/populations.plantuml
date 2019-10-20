@@ -1,0 +1,12 @@
+@startuml
+
+[*] --> Normal
+[*] --> Believer
+Normal -right-> Believer
+Normal --> Heretic
+Believer --> Heretic
+Believer --> Recluse
+Heretic --> [*]
+Recluse --> [*]
+
+@enduml
