@@ -94,6 +94,7 @@ public class Religion {
                 if(objSkill.get("experienceNeeded") != null) skill.setExperienceNeeded((int) objSkill.get("experienceNeeded"));
                 if(objSkill.get("name") != null) skill.setName((String) objSkill.get("name"));
                 if(objSkill.get("description") != null) skill.setDescription((String) objSkill.get("description"));
+                if(objSkill.get("imgPath") != null) skill.setImage((String) objSkill.get("imgPath"));
                 
                 JSONArray jsonSuccessors = (JSONArray) objSkill.get("successors");
                 for(int j = 0; j < jsonSuccessors.length(); j++)
