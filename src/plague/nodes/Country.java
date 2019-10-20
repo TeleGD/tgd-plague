@@ -27,6 +27,8 @@ public class Country extends Node {
 	private float size;
 	private double credulity;
 	private float dashesStart;
+	private double rate;
+	private Color color;
 	
 	private ArrayList<Country> earthLinks;
 	private ArrayList<Double> earthWeights;
@@ -81,6 +83,21 @@ public class Country extends Node {
 	public void setHeretic(Heretic heretic) {
 		this.heretic = heretic;
 	}
+	
+	private double getPopulation() {
+		return this.normal.getCount() + this.believer.getCount() + this.recluse.getCount() + this.heretic.getCount();
+	}
+	
+	private double getRate() {
+		return this.rate;
+	}
+	
+	public Color getColor() {
+		int red = (int)(110 + (240-110)*this.rate);
+		int green = (int)(35 + (136-35)*this.rate);
+		int blue = (int)(104 + (47-104)*this.rate);
+		return new Color(65536*red + 256*green + blue);
+	}
 
 	public void update(GameContainer container, StateBasedGame game, int delta) {
 		double[] inputVector = new double[]{
@@ -105,13 +122,16 @@ public class Country extends Node {
 		this.normal.setCount(outputVector[2]);
 		this.recluse.setCount(outputVector[3]);
 		
+		this.rate = this.believer.getCount()/this.getPopulation();
+		this.color = this.getColor();
+		
 		// DashesStart = point de départ du traçage des traits (entre 0 et 1).
 		// Il varie selon le carré de la crédulité pour une meilleure distinction des populations très crédules
 		this.dashesStart = (float) ((this.dashesStart-(delta*this.credulity*this.credulity/5000))%1);
 	}
 	
 	public void render (GameContainer container, StateBasedGame game, Graphics context) {
-		context.setColor(Color.decode("#6E2368"));
+		context.setColor(this.color);
 		context.fillOval(x-size/64, y-size/64, size/32, size/32);
 		context.setColor(Color.white);
 		context.setLineWidth(2);
