@@ -3,6 +3,12 @@ package plague;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.newdawn.slick.Color;
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
+import org.newdawn.slick.state.StateBasedGame;
+
 public class Skill {
 	
 	private int id;
@@ -18,8 +24,16 @@ public class Skill {
     private String name;
     private String description;
     
+    private float x;
+    private float y;
+    private float width;
+    
     public Skill() {
     	successors = new ArrayList<>();
+    	
+    	x = 100;
+    	y = 100;
+    	width = 75;
     }
 
 	public void setId(int id) {
@@ -80,5 +94,18 @@ public class Skill {
 	
 	public String toString() {
 		return id + ", " + name + ", " + description + ", successors:" + successors.toString();
+	}
+
+	public void render(GameContainer container, StateBasedGame game, Graphics context, Image img) {
+		img.draw(x*container.getWidth()/1280,y*container.getWidth()/1280.0f,0.15f*container.getWidth()/1280.0f);
+		
+	}
+
+	public void setX(int x) {
+		this.x = x;		
+	}
+	
+	public void setY(int y) {
+		this.y = y;		
 	}
 }
