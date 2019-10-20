@@ -1,5 +1,11 @@
 package plague;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -8,10 +14,12 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
-import plague.nodes.Country;
 
-import java.util.ArrayList;
-import java.util.List;
+import app.AppLoader;
+
+import plague.nodes.Country;
+import plague.nodes.Link;
+import plague.nodes.links.EarthLink;
 
 public class World extends BasicGameState {
 
@@ -21,12 +29,14 @@ public class World extends BasicGameState {
 	private int height;
 	private Player player;
 	private List<Country> countries;
+	private List<Link> links;
 	private float aspectRatio;
 
 	public World(int ID) {
 		this.ID = ID;
 		this.state = 0;
-		this.countries = new ArrayList<>();
+		this.countries = new ArrayList<Country>();
+		this.links = new ArrayList<Link>();
 	}
 
 	@Override
@@ -40,8 +50,8 @@ public class World extends BasicGameState {
 		this.width = container.getWidth();
 		this.height = container.getHeight();
 		this.aspectRatio = Math.min(container.getWidth() / 1280f, container.getHeight() / 720f);
-		countries.add(new Country((int) 60e6, 41, 10, 0.7, this));
-		countries.add(new Country((int) 1e6, -9, -120, 1, this));
+		countries.add(new Country("Pays 1", (int) 60e6, 41, 10, this));
+		countries.add(new Country("Pays 2", (int) 1e6, -9, -120, this));
 	}
 
 	@Override
@@ -93,6 +103,7 @@ public class World extends BasicGameState {
 
 	public void play(GameContainer container, StateBasedGame game) {
 		/* Méthode exécutée une unique fois au début du jeu */
+		this.loadGraph();
 //		this.player = new Player();
 	}
 
@@ -138,8 +149,33 @@ public class World extends BasicGameState {
 		}
 		return null;
 	}
-	
-	void loadGraph(String jsonPath) {
-		
+
+	private void loadGraph() {
+    	String load = AppLoader.loadData("/data/world.json");
+		try {
+			JSONObject json = new JSONObject(load);
+			JSONArray nodes = json.getJSONArray("nodes");
+			for (int i = 0, li = nodes.length(); i < li; i++) {
+				JSONObject node = nodes.getJSONObject(i);
+				String name = node.getString("name");
+				int population = node.getInt("population");
+				double latitude = node.getDouble("latitude");
+				double longitude = node.getDouble("longitude");
+				this.countries.add(new Country(name, population, latitude, longitude, this));
+			}
+			JSONArray links = json.getJSONArray("links");
+			for (int i = 0, li = links.length(); i < li; i++) {
+				JSONObject link = links.getJSONObject(i);
+				double weight = link.getDouble("weight");
+				JSONArray countryIDs = link.getJSONArray("countries");
+				List<Country> countries = new ArrayList<Country>();
+				for (int j = 0, lj = countryIDs.length(); j < lj; j++) {
+					int countryID = countryIDs.getInt(j);
+					Country country = this.countries.get(countryID);
+					countries.add(country);
+				}
+				this.links.add(new EarthLink(weight, countries));
+			}
+		} catch (JSONException exception) {}
 	}
 }
