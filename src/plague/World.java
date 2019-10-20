@@ -130,6 +130,7 @@ public class World extends BasicGameState {
 
 	//TODO : Ajouter la selection du Country du croyant 0 (Country de départ)
 
+
 	public Country whichCountryPressed(int x, int y){
 		for (Country country: countries) {
 			if (country.isCursorOnCountry(x, y)){
