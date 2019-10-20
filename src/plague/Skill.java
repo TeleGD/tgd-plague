@@ -25,14 +25,14 @@ public class Skill {
     
     private float x;
     private float y;
-    private float radius;
+    private float width;
     
     public Skill() {
     	successors = new ArrayList<>();
     	
     	x = 100;
     	y = 100;
-    	radius = 15;
+    	width = 75;
     }
 
 	public void setId(int id) {
@@ -98,8 +98,16 @@ public class Skill {
 	public void render(GameContainer container, StateBasedGame game, Graphics context, Color color) {
 		Color currentColor = context.getColor();
 		context.setColor(color);
-		context.fillOval(x, y, radius, radius);
+		context.fillRect(x, y, width, width);
 		context.setColor(currentColor);
 		
+	}
+
+	public void setX(int x) {
+		this.x = x;		
+	}
+	
+	public void setY(int y) {
+		this.y = y;		
 	}
 }

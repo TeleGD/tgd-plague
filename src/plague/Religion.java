@@ -84,6 +84,8 @@ public class Religion {
                 Skill skill = new Skill();
 
                 if(objSkill.get("id") != null) skill.setId((int) objSkill.get("id"));
+                if(objSkill.get("x") != null) skill.setX((int) objSkill.get("x"));
+                if(objSkill.get("y") != null) skill.setY((int) objSkill.get("y"));
                 if(objSkill.get("isolement") != null) skill.setIsolement((int) objSkill.get("isolement"));
                 if(objSkill.get("persuasion") != null) skill.setPersuasion((int) objSkill.get("persuasion"));
                 if(objSkill.get("cohesion") != null) skill.setCohesion((int) objSkill.get("cohesion"));
