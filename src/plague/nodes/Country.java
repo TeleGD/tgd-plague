@@ -142,6 +142,7 @@ public class Country extends Node {
 			theta2 = 2*Math.PI*(this.dashesStart+(double)(i+1)/n);
 			context.drawLine((float)(x+size/72*Math.cos(theta1)), (float)(y-size/72*Math.sin(theta1)), (float)(x+size/72*Math.cos(theta2)), (float)(y-size/72*Math.sin(theta2)));;
 		}
+		context.drawString(""+(int)(this.rate*100)+"%", x-12, y-8);
 	}
 	
 	private void change(int i1, int j1, int i2, int j2, double x) {
