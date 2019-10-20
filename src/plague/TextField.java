@@ -4,6 +4,7 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.Font;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.state.StateBasedGame;
 
 import app.AppFont;
@@ -93,5 +94,50 @@ public class TextField {
 	public int getCaret() {
 		return this.caret;
 	}
-
+	
+	public void keyPressed(int key, char value) {
+		String text = this.getText();
+		int caret = this.getCaret();
+		switch (key) {
+			case Input.KEY_BACK: {
+				if (caret > 0) {
+					String start = text.substring(0, caret - 1);
+					String end = text.substring(caret);
+					this.setCaret(caret - 1);
+				}
+				return;
+			}
+			case Input.KEY_LEFT: {
+				if (caret > 0) {
+					this.setCaret(caret - 1);
+				}
+				return;
+			}
+			case Input.KEY_RIGHT: {
+				int length = text.length();
+				if (caret < length) {
+					this.setCaret(caret + 1);
+				}
+				return;
+			}
+			case Input.KEY_DELETE: {
+				int length = text.length();
+				if (caret < length) {
+					String start = text.substring(0, caret);
+					String end = text.substring(caret + 1);
+					this.setText(start + end);
+				}
+				return;
+			}
+		}
+		if (value >= 32) {
+			int length = text.length();
+			if (length < 30) { // MAGIC NUMBER
+				String start = text.substring(0, caret);
+				String end = text.substring(caret);
+				this.setText(start + value + end);
+				this.setCaret(caret + 1);
+			}
+		}
+	}
 }
