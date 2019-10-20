@@ -32,6 +32,8 @@ public class Skill {
     private float realScale;
     private float imgWidth;
     
+    private Image img;
+    
     public Skill() {
     	successors = new ArrayList<>();
     	realX = -1;
@@ -50,6 +52,10 @@ public class Skill {
 	
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	public void setImage(String path) {
+		this.img = app.AppLoader.loadPicture(path);
 	}
 	
 	public void setIsolement(int isolement) {
@@ -102,6 +108,7 @@ public class Skill {
 
 	public void render(GameContainer container, StateBasedGame game, Graphics context, Image img) {
 		img.draw(x*container.getWidth()/1280.0f,y*container.getWidth()/1280.0f,0.15f*container.getWidth()/1280.0f);
+		this.img.draw(x*container.getWidth()/1280.0f,y*container.getWidth()/1280.0f,0.15f*container.getWidth()/1280.0f);
 		realX = x*container.getWidth()/1280.0f;
 		realY = y*container.getWidth()/1280.0f;
 		realScale = 0.15f*container.getWidth()/1280.0f;
