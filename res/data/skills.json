@@ -212,6 +212,164 @@
 					}
 				],
 			"unlocked": 0
+		},
+		{
+			"id": 13,
+			"name":"Festival",
+			"description":"Ce festival fait référence dans le milieu des sectes. Augmente votre persuasion et votre cohésion.",
+			"isolement": 0,
+			"cohesion": 6,
+			"persuasion": 4,
+			"experienceNeeded": 2,
+			"successors":
+				[
+				],
+			"unlocked": 0
+		},
+		{
+			"id": 14,
+			"name":"Prophète",
+			"description":"Il anime à merveille votre séminaire de Pâques. Augmente votre cohésion et votre isolement.",
+			"isolement": 4,
+			"cohesion": 6,
+			"persuasion": 0,
+			"experienceNeeded": 2,
+			"successors":
+				[
+				],
+			"unlocked": 0
+		},
+		{
+			"id": 15,
+			"name":"Temple",
+			"description":"On y est à l'aise pour écouter votre parole. Augmente votre cohésion et votre isolement.",
+			"isolement": 5,
+			"cohesion": 5,
+			"persuasion": 0,
+			"experienceNeeded": 2,
+			"successors":
+				[
+					{
+						"id": 21
+					},
+					{
+						"id": 22
+					}
+				],
+			"unlocked": 0
+		},
+		{
+			"id": 16,
+			"name":"Rituel",
+			"description":"Des fois ça se passe bien. Augmente votre isolement et votre cohésion.",
+			"isolement": 8,
+			"cohesion": 0,
+			"persuasion": 2,
+			"experienceNeeded": 2,
+			"successors":
+				[
+					{
+						"id": 20
+					}
+				],
+			"unlocked": 0
+		},
+		{
+			"id": 17,
+			"name":"Martyr",
+			"description":"C'est pour la bonne cause. Augmente grandement votre isolement.",
+			"isolement": 10,
+			"cohesion": 0,
+			"persuasion": 0,
+			"experienceNeeded": 2,
+			"successors":
+				[
+					{
+						"id": 18
+					}
+				],
+			"unlocked": 0
+		},
+		{
+			"id": 18,
+			"name":"Milice",
+			"description":"Pour protéger vos adeptes, rien de plus. Augmente grandement votre isolement en dépit de votre persuasion.",
+			"isolement": 18,
+			"cohesion": 0,
+			"persuasion": -6,
+			"experienceNeeded": 2,
+			"successors":
+				[
+					{
+						"id": 19
+					}
+				],
+			"unlocked": 0
+		},
+		{
+			"id": 19,
+			"name":"Croisade",
+			"description":"Deus vult. Augmente grandement votre isolement et votre cohesion en dépit de votre persuasion.",
+			"isolement": 20,
+			"cohesion": 8,
+			"persuasion": -6,
+			"experienceNeeded": 3,
+			"successors":
+				[
+				],
+			"unlocked": 0
+		},
+		{
+			"id": 20,
+			"name":"Lieu de culte",
+			"description":"Ce qui se passe au lieu de culte, reste au lieu de culte. Augmente votre isolement et votre cohésion.",
+			"isolement": 7,
+			"cohesion": 3,
+			"persuasion": 0,
+			"experienceNeeded": 2,
+			"successors":
+				[
+				],
+			"unlocked": 0
+		},
+		{
+			"id": 21,
+			"name":"Idolâtrie",
+			"description":"Aucun blasphème ne sera toléré. Augmente votre cohésion et votre isolement.",
+			"isolement": 6,
+			"cohesion": 12,
+			"persuasion": 0,
+			"experienceNeeded": 3,
+			"successors":
+				[
+				],
+			"unlocked": 0
+		},
+		{
+			"id": 22,
+			"name":"Offrandes",
+			"description":"Même périmé ça passe. Augmente grandement votre cohésion en dépit de votre isolement.",
+			"isolement": -4,
+			"cohesion": 18,
+			"persuasion": 0,
+			"experienceNeeded": 3,
+			"successors":
+				[
+				],
+			"unlocked": 0
+		},
+		{
+			"id": 23,
+			"name":"Miracle",
+			"description":"Certifié par vous-même. Augmente tout, en particulier votre persuasion.",
+			"isolement": 15,
+			"cohesion": 10,
+			"persuasion": 10,
+			"experienceNeeded": 4,
+			"successors":
+				[
+				],
+			"unlocked": 0
 		}
 	]
 }
