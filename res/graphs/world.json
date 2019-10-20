@@ -1,5 +1,4 @@
-{
-"nodes" : [
+[
 	{
 		"name": "France",
 		"latitude": 41,
@@ -13,4 +12,3 @@
 		"population": 120e6
 	},
 ]
-}
