@@ -1,22 +1,18 @@
 package plague.nodes;
 
-<<<<<<< HEAD
 import java.util.ArrayList;
 //import java.lang.Math.cos;
 import java.lang.*;
 
-=======
->>>>>>> f6ab903af090de0953e302f8825e3e2667bb84ba
+
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.state.StateBasedGame;
-<<<<<<< HEAD
+
 
 import app.AppLoader;
-=======
->>>>>>> f6ab903af090de0953e302f8825e3e2667bb84ba
 import plague.Node;
 import plague.World;
 import plague.populations.Believer;
