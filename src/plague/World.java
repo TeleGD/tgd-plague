@@ -41,6 +41,8 @@ public class World extends BasicGameState {
 		this.height = container.getHeight();
 		countries.add(new Country((int)1e6, 41, 10, this));
 		this.aspectRatio = Math.min(container.getWidth() / 1280f, container.getHeight() / 720f);
+		countries.add(new Country((int)1e6, -9, -120, 1, this));
+		countries.add(new Country((int)60e6, 41, 10, 0.7, this));
 	}
 
 	@Override
