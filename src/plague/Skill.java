@@ -53,4 +53,32 @@ public class Skill {
 	public void addSuccessor(int id) {
 		this.successors.add(new Integer(id));
 	}
+
+	public int getId() {
+		return id;
+	}
+
+	public int getExperienceNeeded() {
+		return experienceNeeded;
+	}
+
+	public int getIsolement() {
+		return isolement;
+	}
+
+	public int getPersuasion() {
+		return persuasion;
+	}
+
+	public int getCohesion() {
+		return cohesion;
+	}
+
+	public List<Integer> getSuccessors() {
+		return this.successors;
+	}
+	
+	public String toString() {
+		return id + ", " + name + ", " + description + ", successors:" + successors.toString();
+	}
 }

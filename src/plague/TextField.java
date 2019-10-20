@@ -1,4 +1,4 @@
-package theEnglishSStone;
+package plague;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Font;
