@@ -31,12 +31,12 @@ public class NameChoice extends AppPage {
 
 		this.setTitle("Choix du nom de la religion");
 
-		this.titleVisibility = false;
+		this.titleVisibility = true;
 		this.subtitleVisibility = false;
 		this.hintVisibility = false;
 		this.aspectRatio = Math.min(container.getWidth() / 1280f, container.getHeight() / 720f);
 
-		this.textField = new TextField(aspectRatio,100,100,100,100,100,5);
+		this.textField = new TextField(aspectRatio,200, 400, 400, 40, 10, 2);
 		//TODO : ajouter TextField
 	}
 
