@@ -2,16 +2,25 @@ package plague;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.state.transition.FadeInTransition;
+import org.newdawn.slick.state.transition.FadeOutTransition;
 
 public class SkillPage extends BasicGameState {
 	private Player player;
+	private int ID;
+
+
+	public SkillPage(int ID){
+		this.ID = ID;
+	}
 
 	@Override
 	public int getID() {
-		return 0;
+		return this.ID;
 	}
 
 	@Override
@@ -25,8 +34,13 @@ public class SkillPage extends BasicGameState {
 	}
 
 	@Override
-	public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int i) throws SlickException {
-		player.updateFromSkillPage(gameContainer, stateBasedGame, i);
+	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
+		Input input = container.getInput();
+		if (input.isKeyDown(Input.KEY_ESCAPE)) {
+			game.enterState(3, new FadeOutTransition(), new FadeInTransition());
+		}
+		player.updateFromSkillPage(container, game, delta);
+
 	}
 
 	public void setPlayer(Player player) {
