@@ -101,7 +101,6 @@ public class TextField {
 		switch (key) {
 			case Input.KEY_BACK: {
 				int length = text.length();
-				System.out.println("Caret :"+caret+"\nlength : "+length);
 				if (caret < length) {
 					if (caret>0) {
 						this.setCaret(caret - 1);
@@ -121,7 +120,6 @@ public class TextField {
 			return;
 			}
 			case Input.KEY_LEFT: {
-				System.out.println("Left.");
 				if (caret > 0) {
 					this.setCaret(caret - 1);
 				}
@@ -136,7 +134,6 @@ public class TextField {
 			}
 			case Input.KEY_DELETE: {
 				int length = text.length();
-				System.out.println("DeLEEEEEEETE !");
 				if (caret < length) {
 					String start = text.substring(0, caret);
 					String end = text.substring(caret + 1);
