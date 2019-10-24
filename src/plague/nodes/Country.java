@@ -1,21 +1,9 @@
 package plague.nodes;
 
-import java.util.ArrayList;
-//import java.lang.Math.cos;
-import java.lang.*;
-
-
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
-import org.newdawn.slick.geom.Circle;
-import org.newdawn.slick.geom.Polygon;
-import org.newdawn.slick.geom.Shape;
 import org.newdawn.slick.state.StateBasedGame;
-
-
-import app.AppLoader;
 import plague.Node;
 import plague.World;
 import plague.populations.Believer;
@@ -24,6 +12,8 @@ import plague.populations.Normal;
 import plague.populations.Recluse;
 
 import java.util.ArrayList;
+
+//import java.lang.Math.cos;
 
 public class Country extends Node {
 	private String name;
@@ -130,15 +120,15 @@ public class Country extends Node {
 				outputVector[i] += this.matrix[i][j] * inputVector[j];
 			}
 		}
-		this.believer.setCount(outputVector[0]);
-		this.heretic.setCount(outputVector[1]);
-		this.normal.setCount(outputVector[2]);
-		this.recluse.setCount(outputVector[3]);
+		this.believer.setNewCount(outputVector[0]);
+		this.heretic.setNewCount(outputVector[1]);
+		this.normal.setNewCount(outputVector[2]);
+		this.recluse.setNewCount(outputVector[3]);
 
 		this.rate = this.believer.getCount()/this.getPopulation();
 		this.color = this.getColor();
 
-		// DashesStart = point de départ du traçage des traits (entre 0 et 1).
+		// DashesStart = point de départ du traçage des traitsetNewCount 0 et 1).
 		// Il varie selon le carré de la crédulité pour une meilleure distinction des populations très crédules
 		this.dashesStart = (float) ((this.dashesStart-(delta*this.getCredulity()*this.getCredulity()/5000))%1);
 	}
@@ -173,6 +163,17 @@ public class Country extends Node {
 		}
 		//this.drawing(context);
 		context.drawString(""+(int)(this.rate*100)+"%", x-12, y-8);
+	}
+
+	/**
+	 * Met à jour les count des population
+	 * À utiliser lorsque tous les Country ont fini de calculer les nouvelles valeurs de leurs populations
+	 */
+	public void updateCount(){
+		normal.updateCount();
+		believer.updateCount();
+		heretic.updateCount();
+		recluse.updateCount();
 	}
 
 	private void change(int i1, int j1, int i2, int j2, double x) {

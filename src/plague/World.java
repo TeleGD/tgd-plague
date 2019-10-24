@@ -1,8 +1,6 @@
 package plague;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import app.AppLoader;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -14,12 +12,12 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
-
-import app.AppLoader;
-
 import plague.nodes.Country;
 import plague.nodes.Link;
 import plague.nodes.links.EarthLink;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class World extends BasicGameState {
 
@@ -87,9 +85,13 @@ public class World extends BasicGameState {
 			this.setState(1);
 			game.enterState(5,new FadeOutTransition(), new FadeInTransition());
 		}
-		for (Country c : countries) {
+		for (Country c : countries) {   // Première passe : contient notamment le calcul des newCount des populations
 			c.update(container, game, delta);
 		}
+		for (Country c : countries) {   // Deuxième passe : met à jour les count des populations avec leur newCount
+			c.updateCount();
+		}
+
 	}
 
 	@Override
