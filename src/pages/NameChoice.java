@@ -29,7 +29,7 @@ public class NameChoice extends AppPage {
 		super.initSize (container, game, 600, 400);
 		super.init(container, game);
 
-		this.setTitle("Choix du nom de la religion");
+		this.setTitle("Choix du nom de votre croyance");
 
 		this.titleVisibility = true;
 		this.subtitleVisibility = false;

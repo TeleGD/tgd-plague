@@ -146,4 +146,8 @@ public class Religion {
 		else
 			return activeSkill(clickedSkill,playerExp);
 	}
+	
+	public String getName() {
+		return this.name;		
+	}
 }

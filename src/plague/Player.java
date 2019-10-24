@@ -26,4 +26,8 @@ public class Player {
 	public void renderFromKillPage(GameContainer container, StateBasedGame game, Graphics context) {
 		religion.render(container, game, context);	
 	}
+	
+	public Religion getReligion() {
+		return this.religion;
+	}
 }

@@ -9,6 +9,9 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.geom.Circle;
+import org.newdawn.slick.geom.Polygon;
+import org.newdawn.slick.geom.Shape;
 import org.newdawn.slick.state.StateBasedGame;
 
 
@@ -141,8 +144,24 @@ public class Country extends Node {
 	}
 
 	public void render (GameContainer container, StateBasedGame game, Graphics context) {
-		context.setColor(this.color);
-		context.fillOval(x-size/2, y-size/2, size, size);
+		//Calcul des proportions de chaque partie de la population
+		int sum = (int)(normal.getCount()+believer.getCount()+recluse.getCount()+heretic.getCount());
+		double t0=0;
+		double t1=360*normal.getCount()/sum;
+		double t2=360*(normal.getCount()+believer.getCount())/sum;
+		double t3 = 360*(normal.getCount()+believer.getCount()+recluse.getCount())/sum;
+		
+		context.setColor(Color.green);
+		context.fillArc(this.x-this.size/2, this.y-this.size/2, this.size, this.size, (float)t0, (float)t1);
+		context.setColor(Color.cyan);
+		context.fillArc(this.x-this.size/2, this.y-this.size/2, this.size, this.size, (float)t1, (float)t2);
+		context.setColor(Color.pink);
+		context.fillArc(this.x-this.size/2, this.y-this.size/2, this.size, this.size, (float)t2, (float)t3);
+		context.setColor(Color.yellow);
+		context.fillArc(this.x-this.size/2, this.y-this.size/2, this.size, this.size, (float)t3, (float)t0);
+		
+		//context.setColor(this.color);
+		//context.fillOval(x-size/2, y-size/2, size, size);
 		context.setColor(Color.white);
 		context.setLineWidth(2);
 		int n = 64;
@@ -152,7 +171,7 @@ public class Country extends Node {
 			theta2 = 2*Math.PI*(this.dashesStart+(double)(i+1)/n);
 			context.drawLine((float)(x+size/2.25*Math.cos(theta1)), (float)(y-size/2.25*Math.sin(theta1)), (float)(x+size/2.25*Math.cos(theta2)), (float)(y-size/2.25*Math.sin(theta2)));;
 		}
-		this.drawing(context);
+		//this.drawing(context);
 		context.drawString(""+(int)(this.rate*100)+"%", x-12, y-8);
 	}
 
@@ -173,28 +192,6 @@ public class Country extends Node {
 		this.change(0, 0, 1, 0, x);
 	}
 
-	public void drawing(Graphics context) {
-		//Image img = AppLoader.loadPicture("/res/images/icons/country_bg_untouched.png").copy();
-		double x = 50;
-		double y = 50;
-		context.setColor(Color.red);
-		double tot = normal.getCount()+believer.getCount()+recluse.getCount()+heretic.getCount();
-		for (int i=0;i<x;i++) {
-			for (int j=0;j<y;j++) {
-				double x2 = (2*i/x-1);
-				double y2 = (2*j/y-1);
-				if (x2*x2 + y2*y2 < 1) {
-					if (Math.atan2(y2, x2) > 0 && Math.atan2(y2, x2) < 1 /*Math.atan(normal.getCount()/tot)*/) {
-						context.fillRect(i,j,1,1);
-					}
-				}
-			}
-			//context.fillRect((float)200,(float)200,(float)40,(float)40);
-		//for ( int i=0 ; i<4 ; i++) {
-			
-			
-		}
-	}
 
 	/**
 	 * Indique si le curseur de la souris est dans le cercle de ce Country

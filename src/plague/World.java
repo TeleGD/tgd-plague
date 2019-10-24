@@ -98,7 +98,7 @@ public class World extends BasicGameState {
 		context.setColor(Color.white);
 		context.fillRect(0, 0, width, height);
 		context.setColor(Color.decode("#4C4C4C"));
-		String title = "Propagation de la religion "+"<<NAME>>";
+		String title = "Propagation de la religion "+this.player.getReligion().getName();
 		context.drawString (title, (width-context.getFont().getWidth(title))/2, 24);
 		for (Country c : countries) {
 			c.render(container, game, context);
