@@ -23,21 +23,27 @@ public class Country extends Node {
 	private Believer believer;
 	private Recluse recluse;
 	private Heretic heretic;
-	private double[][] matrix;
+	private double[][] internal_evolution_matrix;
+	private double[][] external_evolution_matrix;
 	private float size;
 	private float dashesStart;
 	private double rate;
 	private Color color;
 
-	private ArrayList<Country> earthLinks;
-	private ArrayList<Double> earthWeights;
+	private ArrayList<Link> links;
 
 	public Country(String name, int population, double latitude, double longitude, World world) {
 		this.normal = new Normal(population);
 		this.believer = new Believer(0);
 		this.recluse = new Recluse(0);
 		this.heretic = new Heretic(0);
-		this.matrix = new double[][]{
+		this.internal_evolution_matrix = new double[][]{
+			new double[]{1, 0, 0, 0},
+			new double[]{0, 1, 0, 0},
+			new double[]{0, 0, 1, 0},
+			new double[]{0, 0, 0, 1}
+		};
+		this.external_evolution_matrix = new double[][]{
 			new double[]{1, 0, 0, 0},
 			new double[]{0, 1, 0, 0},
 			new double[]{0, 0, 1, 0},
@@ -49,6 +55,7 @@ public class Country extends Node {
 		this.longitude = longitude;
 		this.x = (int)(world.getWidth()*(longitude+180)/360);
 		this.y = (int)(world.getHeight()*(-latitude+90)/180);
+		this.links = new ArrayList<>();
 	}
 
 	public Normal getNormal() {
@@ -92,7 +99,7 @@ public class Country extends Node {
 	}
 
 	private double getCredulity() {
-		return this.matrix[2][2] - 1;
+		return this.internal_evolution_matrix[2][2] - 1;
 	}
 
 	public Color getColor() {
@@ -103,27 +110,8 @@ public class Country extends Node {
 	}
 
 	public void update(GameContainer container, StateBasedGame game, int delta) {
-		double[] inputVector = new double[]{
-			this.believer.getCount(),
-			this.heretic.getCount(),
-			this.normal.getCount(),
-			this.recluse.getCount()
-		};
-		double[] outputVector = new double[]{
-			0,
-			0,
-			0,
-			0
-		};
-		for (int i = 0; i < 4; i++) {
-			for (int j = 0; j < 4; j++) {
-				outputVector[i] += this.matrix[i][j] * inputVector[j];
-			}
-		}
-		this.believer.setNewCount(outputVector[0]);
-		this.heretic.setNewCount(outputVector[1]);
-		this.normal.setNewCount(outputVector[2]);
-		this.recluse.setNewCount(outputVector[3]);
+		isolatedPropagation();
+		connectedPropagation();
 
 		this.rate = this.believer.getCount()/this.getPopulation();
 		this.color = this.getColor();
@@ -133,6 +121,87 @@ public class Country extends Node {
 		this.dashesStart = (float) ((this.dashesStart-(delta*this.getCredulity()*this.getCredulity()/5000))%1);
 	}
 
+	/**
+	 * Calcule et applique la propagation de la croyance en interne à ce Country (sans considérer les Link)
+	 */
+	public void isolatedPropagation(){
+		double[] inputVector = new double[]{
+				this.normal.getCount(),
+				this.believer.getCount(),
+				this.recluse.getCount(),
+				this.heretic.getCount()
+		};
+		double[] outputVector = new double[]{
+				0,
+				0,
+				0,
+				0
+		};
+		for (int i = 0; i < 4; i++) {
+			for (int j = 0; j < 4; j++) {
+				outputVector[i] += this.internal_evolution_matrix[i][j] * inputVector[j];
+			}
+		}
+		this.normal.setNewCount(outputVector[0]);
+		this.believer.setNewCount(outputVector[1]);
+		this.recluse.setNewCount(outputVector[2]);
+		this.heretic.setNewCount(outputVector[3]);
+	}
+
+	/**
+	 * Calcule et applique la propagation de la croyance provoquée par les autres Country connectés via des Link
+	 */
+	public void connectedPropagation(){
+		double[] inputVector = new double[]{
+				this.normal.getCount(),
+				this.believer.getCount(),
+				this.recluse.getCount(),
+				this.heretic.getCount()
+		};
+		double[] outputVector = new double[]{
+				0,
+				0,
+				0,
+				0
+		};
+
+		double[] fluxLinks = new double[]{
+				0,
+				0,
+				0,
+				0
+		};
+
+		for (Link link : links){    // Somme des flux de tous les links de ce Country
+			double[] fluxOfLink = link.getFlux();
+			for (int i = 0; i < 4 ; i++) {
+				fluxLinks[i] += fluxOfLink[i] - inputVector[i] * link.getWeight(); // On retire du flux les populations qui venaient de ce Country
+			}
+		}
+
+		this.external_evolution_matrix = new double[][]{
+				new double[]{1, 0, 0, 0},
+				new double[]{0, 1, 0, 0},
+				new double[]{0, 0, 1, 0},
+				new double[]{0, 0, 0, 1}
+		};  // remise à zéro de la matrice d'évolution
+
+		persuade_external(fluxLinks[1]);
+		isolate_external(fluxLinks[2]);
+		split_external(fluxLinks[3]);
+
+		for (int i = 0; i < 4; i++) {
+			for (int j = 0; j < 4; j++) {
+				outputVector[i] += this.external_evolution_matrix[i][j] * inputVector[j];
+			}
+		}
+		this.normal.setNewCount(outputVector[0]);
+		this.believer.setNewCount(outputVector[1]);
+		this.recluse.setNewCount(outputVector[2]);
+		this.heretic.setNewCount(outputVector[3]);
+	}
+
+
 	public void render (GameContainer container, StateBasedGame game, Graphics context) {
 		//Calcul des proportions de chaque partie de la population
 		int sum = (int)(normal.getCount()+believer.getCount()+recluse.getCount()+heretic.getCount());
@@ -140,7 +209,7 @@ public class Country extends Node {
 		double t1=360*normal.getCount()/sum;
 		double t2=360*(normal.getCount()+believer.getCount())/sum;
 		double t3 = 360*(normal.getCount()+believer.getCount()+recluse.getCount())/sum;
-		
+
 		context.setColor(Color.green);
 		context.fillArc(this.x-this.size/2, this.y-this.size/2, this.size, this.size, (float)t0, (float)t1);
 		context.setColor(Color.cyan);
@@ -176,21 +245,38 @@ public class Country extends Node {
 		recluse.updateCount();
 	}
 
-	private void change(int i1, int j1, int i2, int j2, double x) {
-		this.matrix[i1][j1] -= x;
-		this.matrix[i2][j2] += x;
+	private void change_internal(int originIndex, int destIndex, double x) {
+		this.internal_evolution_matrix[originIndex][originIndex] -= x;
+		this.internal_evolution_matrix[originIndex][destIndex] += x;
+	}
+
+	private void change_external(int originIndex, int destIndex, double x) {
+		this.external_evolution_matrix[originIndex][originIndex] -= x;
+		this.external_evolution_matrix[originIndex][destIndex] += x;
 	}
 
 	public void persuade(double x) {
-		this.change(2, 2, 0, 2, x);
+		this.change_internal(0, 1, x);
 	}
 
 	public void isolate(double x) {
-		this.change(0, 0, 3, 0, x);
+		this.change_internal(1, 2, x);
 	}
 
 	public void split(double x) {
-		this.change(0, 0, 1, 0, x);
+		this.change_internal(2, 3, x);
+	}
+
+	public void persuade_external(double x) {
+		this.change_external(0, 1, x);
+	}
+
+	public void isolate_external(double x) {
+		this.change_external(1, 2, x);
+	}
+
+	public void split_external(double x) {
+		this.change_external(2, 3, x);
 	}
 
 
@@ -202,6 +288,10 @@ public class Country extends Node {
 	 */
 	public boolean isCursorOnCountry(int x, int y) {
 		return (Math.abs(x - this.x) <= size / 2);
+	}
+
+	public void addLink(Link link){
+		links.add(link);
 	}
 
 
