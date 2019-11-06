@@ -86,6 +86,10 @@ public class World extends BasicGameState {
 			this.setState(1);
 			game.enterState(5,new FadeOutTransition(), new FadeInTransition());
 		}
+
+		for (Link link : links){    // Mise à jour des flux des Link pour préparer le calcul de propagation entre Country
+			link.updateFlux();
+		}
 		for (Country c : countries) {   // Première passe : contient notamment le calcul des newCount des populations
 			c.update(container, game, delta);
 		}
