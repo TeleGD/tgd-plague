@@ -29,6 +29,7 @@ public class World extends BasicGameState {
 	private List<Country> countries;
 	private List<Link> links;
 	private float aspectRatio;
+	private CountrySelector countrySelector;
 
 	public World(int ID) {
 		this.ID = ID;
@@ -91,6 +92,9 @@ public class World extends BasicGameState {
 		for (Country c : countries) {   // Deuxième passe : met à jour les count des populations avec leur newCount
 			c.updateCount();
 		}
+		if(countrySelector!=null){
+			countrySelector.update(container, game, delta);
+		}
 
 	}
 
@@ -105,11 +109,15 @@ public class World extends BasicGameState {
 		for (Country c : countries) {
 			c.render(container, game, context);
 		}
+		if (countrySelector !=null){
+			countrySelector.render(container, game, context);
+		}
 	}
 
 	public void play(GameContainer container, StateBasedGame game) {
 		/* Méthode exécutée une unique fois au début du jeu */
 		this.loadGraph();
+		this.countrySelector = new CountrySelector(this, container);   // Selecteur de Country de patient 0. //TODO : changer lorsqu'on utilisera plusieurs selecteurs ayant des effets différents
 //		this.player = new Player();
 	}
 
@@ -146,7 +154,12 @@ public class World extends BasicGameState {
 	}
 
 	//TODO : Ajouter la selection du Country du croyant 0 (Country de départ)
-
+	@Override
+	public void mousePressed(int arg0, int x, int y) {
+		if (countrySelector!=null){
+			countrySelector.mousePressed(arg0, x, y);
+		}
+	}
 
 	public Country whichCountryPressed(int x, int y){
 		for (Country country: countries) {
