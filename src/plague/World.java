@@ -124,6 +124,9 @@ public class World extends BasicGameState {
 		for (Country c : countries) {
 			c.render(container, game, context);
 		}
+		for (Link l : links) {
+			l.render(container, game, context);
+		}
 		if (countrySelector !=null){
 			countrySelector.render(container, game, context);
 		}
