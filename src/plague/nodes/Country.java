@@ -99,7 +99,15 @@ public class Country extends Node {
 	}
 
 	private double getCredulity() {
-		return this.internal_evolution_matrix[2][2] - 1;
+		return this.internal_evolution_matrix[1][1] - 1;
+	}
+	
+	public int getX() {
+		return this.x;
+	}
+	
+	public int getY() {
+		return this.y;
 	}
 
 	public Color getColor() {
@@ -218,7 +226,7 @@ public class Country extends Node {
 		context.fillArc(this.x-this.size/2, this.y-this.size/2, this.size, this.size, (float)t2, (float)t3);
 		context.setColor(Color.yellow); // Population hérétique
 		context.fillArc(this.x-this.size/2, this.y-this.size/2, this.size, this.size, (float)t3, (float)t0);
-		
+
 		//context.setColor(this.color);
 		//context.fillOval(x-size/2, y-size/2, size, size);
 		context.setColor(Color.white);
@@ -247,12 +255,12 @@ public class Country extends Node {
 
 	private void change_internal(int originIndex, int destIndex, double x) {
 		this.internal_evolution_matrix[originIndex][originIndex] -= x;
-		this.internal_evolution_matrix[originIndex][destIndex] += x;
+		this.internal_evolution_matrix[destIndex][originIndex] += x;
 	}
 
 	private void change_external(int originIndex, int destIndex, double x) {
 		this.external_evolution_matrix[originIndex][originIndex] -= x;
-		this.external_evolution_matrix[originIndex][destIndex] += x;
+		this.external_evolution_matrix[destIndex][originIndex] += x;
 	}
 
 	public void persuade(double x) {
