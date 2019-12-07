@@ -15,12 +15,69 @@
 			"longitude": 163,
 			"population": 120e6
 		},
+        {
+			"id": 2,
+			"name": "Australie",
+			"latitude": -35,
+			"longitude": 149,
+			"population": 25e6
+		},
+        {
+			"id": 3,
+			"name": "Afrique du Sud",
+			"latitude": -34,
+			"longitude": 18,
+			"population": 57e6
+		},
+        {
+			"id": 4,
+			"name": "Burkina Faso",
+			"latitude": 12,
+			"longitude": 1,
+			"population": 19e6
+		},
+        {
+			"id": 5,
+			"name": "Russie",
+			"latitude": 55,
+			"longitude": 37,
+			"population": 144e6
+		},
+        {
+			"id": 6,
+			"name": "Suède",
+			"latitude": 59,
+			"longitude": 18,
+			"population": 10e6
+		},
 	],
 	"links":
 	[
 		{
 			"weight": 0.4,
-			"countries": [0, 1]
+			"countries": [0, 1],
+            "type": "air"
+		},
+        {
+			"weight": 0.8,
+			"countries": [0, 5],
+            "type": "earth"
+		},
+        {
+			"weight": 0.8,
+			"countries": [3, 4],
+            "type": "earth"
+		},
+        {
+			"weight": 0.8,
+			"countries": [4, 6],
+            "type": "earth"
+		},
+        {
+			"weight": 1,
+			"countries": [0, 4, 6],
+            "type": "sea"
 		}
+
 	]
 }

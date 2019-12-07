@@ -14,7 +14,9 @@ import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 import plague.nodes.Country;
 import plague.nodes.Link;
+import plague.nodes.links.AirLink;
 import plague.nodes.links.EarthLink;
+import plague.nodes.links.SeaLink;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -198,7 +200,13 @@ public class World extends BasicGameState {
 					Country country = this.countries.get(countryID);
 					countries.add(country);
 				}
-				this.links.add(new EarthLink(weight, countries));
+				String type = link.getString("type");
+				switch (type) {
+				case "earth" :  this.links.add(new EarthLink(weight, countries));
+				case "air" : this.links.add(new AirLink(weight,countries));
+				case "sea" : this.links.add(new SeaLink(weight,countries));
+				default : break;
+				}
 			}
 		} catch (JSONException exception) {}
 	}
