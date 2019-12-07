@@ -8,6 +8,9 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
+import org.newdawn.slick.Music;
+import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.FadeInTransition;
@@ -32,6 +35,14 @@ public class World extends BasicGameState {
 	private List<Link> links;
 	private float aspectRatio;
 	private CountrySelector countrySelector;
+	private static Music theme;
+	static {
+		try {
+			theme = new Music("res/musics/Bio_UnitMetre_-_06_-_Resonance.ogg");
+		} catch (SlickException e) {
+			e.printStackTrace();
+		}
+	}
 
 	public World(int ID) {
 		this.ID = ID;
@@ -85,7 +96,7 @@ public class World extends BasicGameState {
 			game.enterState(2, new FadeOutTransition(), new FadeInTransition());
 		} else if (input.isKeyDown(Input.KEY_K)){
 			((SkillPage) game.getState (5)).setPlayer(player);
-			this.setState(1);
+			//this.setState(1);
 			game.enterState(5,new FadeOutTransition(), new FadeInTransition());
 		}
 
@@ -115,6 +126,9 @@ public class World extends BasicGameState {
 		for (Country c : countries) {
 			c.render(container, game, context);
 		}
+		for (Link l : links) {
+			l.render(container, game, context);
+		}
 		if (countrySelector !=null){
 			countrySelector.render(container, game, context);
 		}
@@ -122,6 +136,7 @@ public class World extends BasicGameState {
 
 	public void play(GameContainer container, StateBasedGame game) {
 		/* Méthode exécutée une unique fois au début du jeu */
+		this.theme.loop(1, (float) 0.4);
 		this.loadGraph();
 		this.countrySelector = new CountrySelector(this, container);   // Selecteur de Country de patient 0. //TODO : changer lorsqu'on utilisera plusieurs selecteurs ayant des effets différents
 //		this.player = new Player();
@@ -129,14 +144,17 @@ public class World extends BasicGameState {
 
 	public void pause(GameContainer container, StateBasedGame game) {
 		/* Méthode exécutée lors de la mise en pause du jeu */
+		this.theme.pause();
 	}
 
 	public void resume(GameContainer container, StateBasedGame game) {
 		/* Méthode exécutée lors de la reprise du jeu */
+		this.theme.resume();
 	}
 
 	public void stop(GameContainer container, StateBasedGame game) {
 		/* Méthode exécutée une unique fois à la fin du jeu */
+		this.theme.stop();
 	}
 
 	public void setState(int state) {
