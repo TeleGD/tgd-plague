@@ -101,6 +101,14 @@ public class Country extends Node {
 	private double getCredulity() {
 		return this.internal_evolution_matrix[2][2] - 1;
 	}
+	
+	public int getX() {
+		return this.x;
+	}
+	
+	public int getY() {
+		return this.y;
+	}
 
 	public Color getColor() {
 		int red = (int)(110 + (240-110)*this.rate);
