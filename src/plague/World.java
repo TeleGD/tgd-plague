@@ -36,6 +36,7 @@ public class World extends BasicGameState {
 	private float aspectRatio;
 	private CountrySelector countrySelector;
 	private static Music theme;
+	private Interface visuel;
 	static {
 		try {
 			theme = new Music("res/musics/Bio_UnitMetre_-_06_-_Resonance.ogg");
@@ -123,6 +124,7 @@ public class World extends BasicGameState {
 		context.setColor(Color.decode("#4C4C4C"));
 		String title = "Propagation de la religion "+this.player.getReligion().getName();
 		context.drawString (title, (width-context.getFont().getWidth(title))/2, 24);
+		visuel.render(container, game, context);
 		for (Link l : links) {
 			l.render(container, game, context);
 		}
@@ -139,7 +141,8 @@ public class World extends BasicGameState {
 		this.theme.loop(1, (float) 0.4);
 		this.loadGraph();
 		this.countrySelector = new CountrySelector(this, container);   // Selecteur de Country de patient 0. //TODO : changer lorsqu'on utilisera plusieurs selecteurs ayant des effets différents
-//		this.player = new Player();
+		//		this.player = new Player();
+		this.visuel = new Interface(countrySelector,null);
 	}
 
 	public void pause(GameContainer container, StateBasedGame game) {
