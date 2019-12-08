@@ -33,10 +33,10 @@ public class Country extends Node {
 	private ArrayList<Link> links;
 
 	public Country(String name, int population, double latitude, double longitude, World world) {
-		this.normal = new Normal(population/2);
-		this.believer = new Believer(population/4);
-		this.recluse = new Recluse(population/8);
-		this.heretic = new Heretic(population/8);
+		this.normal = new Normal(population);
+		this.believer = new Believer(0);
+		this.recluse = new Recluse(0);
+		this.heretic = new Heretic(0);
 		this.internal_evolution_matrix = new double[][]{
 			new double[]{1, 0, 0, 0},
 			new double[]{0, 1, 0, 0},
