@@ -34,7 +34,6 @@ public class World extends BasicGameState {
 	private Player player;
 	private List<Country> countries;
 	private List<Link> links;
-	private float aspectRatio;
 	private CountrySelector countrySelector;
 	private static Music theme;
 	private Image sprite = AppLoader.loadPicture("/res/images/equirectangular.png");
@@ -65,7 +64,6 @@ public class World extends BasicGameState {
 		/* Méthode exécutée une unique fois au chargement du programme */
 		this.width = container.getWidth();
 		this.height = container.getHeight();
-		this.aspectRatio = Math.min(container.getWidth() / 1280f, container.getHeight() / 720f);
 		background = sprite.getScaledCopy(this.width, this.height);
 		//countries.add(new Country("Pays 1", (int) 60e6, 41, 10, this));
 		//countries.add(new Country("Pays 2", (int) 1e6, -9, -120, this));
@@ -105,16 +103,13 @@ public class World extends BasicGameState {
 			game.enterState(5,new FadeOutTransition(), new FadeInTransition());
 		}
 
-		for (Link link : links){    // Mise à jour des flux des Link pour préparer le calcul de propagation entre Country
-			link.updateFlux();
+		for (Link link: links) { // Calcul des sommes des populations des liens
+			link.update(container, game, delta);
 		}
-		for (Country c : countries) {   // Première passe : contient notamment le calcul des newCount des populations
-			c.update(container, game, delta);
+		for (Country country: countries) { // Calcul des nouvelles populations des populations
+			country.update(container, game, delta);
 		}
-//		for (Country c : countries) {   // Deuxième passe : met à jour les count des populations avec leur newCount
-//			c.updateCount();
-//		}
-		if(countrySelector!=null){
+		if (countrySelector!=null) {
 			countrySelector.update(container, game, delta);
 		}
 
@@ -246,4 +241,5 @@ public class World extends BasicGameState {
 			}
 		} catch (JSONException exception) {}
 	}
+
 }
