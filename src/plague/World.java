@@ -8,13 +8,18 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
+import org.newdawn.slick.Music;
+import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 import plague.nodes.Country;
 import plague.nodes.Link;
+import plague.nodes.links.AirLink;
 import plague.nodes.links.EarthLink;
+import plague.nodes.links.SeaLink;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +35,14 @@ public class World extends BasicGameState {
 	private List<Link> links;
 	private float aspectRatio;
 	private CountrySelector countrySelector;
+	private static Music theme;
+	static {
+		try {
+			theme = new Music("res/musics/Bio_UnitMetre_-_06_-_Resonance.ogg");
+		} catch (SlickException e) {
+			e.printStackTrace();
+		}
+	}
 
 	public World(int ID) {
 		this.ID = ID;
@@ -48,7 +61,10 @@ public class World extends BasicGameState {
 		/* Méthode exécutée une unique fois au chargement du programme */
 		this.width = container.getWidth();
 		this.height = container.getHeight();
-		this.aspectRatio = Math.min(container.getWidth() / 1280f, container.getHeight() / 720f);	}
+		this.aspectRatio = Math.min(container.getWidth() / 1280f, container.getHeight() / 720f);
+		//countries.add(new Country("Pays 1", (int) 60e6, 41, 10, this));
+		//countries.add(new Country("Pays 2", (int) 1e6, -9, -120, this));
+	}
 
 	@Override
 	public void enter(GameContainer container, StateBasedGame game) {
@@ -80,7 +96,7 @@ public class World extends BasicGameState {
 			game.enterState(2, new FadeOutTransition(), new FadeInTransition());
 		} else if (input.isKeyDown(Input.KEY_K)){
 			((SkillPage) game.getState (5)).setPlayer(player);
-			this.setState(1);
+			//this.setState(1);
 			game.enterState(5,new FadeOutTransition(), new FadeInTransition());
 		}
 
@@ -107,6 +123,9 @@ public class World extends BasicGameState {
 		context.setColor(Color.decode("#4C4C4C"));
 		String title = "Propagation de la religion "+this.player.getReligion().getName();
 		context.drawString (title, (width-context.getFont().getWidth(title))/2, 24);
+		for (Link l : links) {
+			l.render(container, game, context);
+		}
 		for (Country c : countries) {
 			c.render(container, game, context);
 		}
@@ -117,6 +136,7 @@ public class World extends BasicGameState {
 
 	public void play(GameContainer container, StateBasedGame game) {
 		/* Méthode exécutée une unique fois au début du jeu */
+		this.theme.loop(1, (float) 0.4);
 		this.loadGraph();
 		this.countrySelector = new CountrySelector(this, container);   // Selecteur de Country de patient 0. //TODO : changer lorsqu'on utilisera plusieurs selecteurs ayant des effets différents
 //		this.player = new Player();
@@ -124,14 +144,17 @@ public class World extends BasicGameState {
 
 	public void pause(GameContainer container, StateBasedGame game) {
 		/* Méthode exécutée lors de la mise en pause du jeu */
+		this.theme.pause();
 	}
 
 	public void resume(GameContainer container, StateBasedGame game) {
 		/* Méthode exécutée lors de la reprise du jeu */
+		this.theme.resume();
 	}
 
 	public void stop(GameContainer container, StateBasedGame game) {
 		/* Méthode exécutée une unique fois à la fin du jeu */
+		this.theme.stop();
 	}
 
 	public void setState(int state) {
@@ -195,7 +218,13 @@ public class World extends BasicGameState {
 					Country country = this.countries.get(countryID);
 					countries.add(country);
 				}
-				this.links.add(new EarthLink(weight, countries));
+				String type = link.getString("type");
+				switch (type) {
+				case "earth" :  this.links.add(new EarthLink(weight, countries));
+				case "air" : this.links.add(new AirLink(weight,countries));
+				case "sea" : this.links.add(new SeaLink(weight,countries));
+				default : break;
+				}
 			}
 		} catch (JSONException exception) {}
 	}

@@ -2,12 +2,17 @@ package plague.nodes;
 
 import java.util.List;
 
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.state.StateBasedGame;
+
 import plague.Node;
 
 public abstract class Link extends Node {
 
-	private double weight;
-	private List<Country> countries;
+	protected double weight;
+	protected List<Country> countries;
+	protected float x, y;
 	/**
 	 * Somme des populations de tous les Country de countries pour chaque type de population
 	 */
@@ -25,6 +30,8 @@ public abstract class Link extends Node {
 				0,
 				0
 		};
+		this.updatePosition();	
+		
 	}
 
 	public double getWeight() {
@@ -53,4 +60,16 @@ public abstract class Link extends Node {
 	public double[] getFlux() {
 		return flux;
 	}
+	
+	public void updatePosition() {
+		float xSum = 0, ySum = 0;
+		for (Country c : countries) {
+			xSum += c.getX();
+			ySum += c.getY();
+		}
+		this.x = xSum / countries.size();
+		this.y = ySum / countries.size();
+	}
+	
+	public abstract void render(GameContainer container, StateBasedGame game, Graphics context);
 }
