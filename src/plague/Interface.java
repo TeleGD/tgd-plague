@@ -24,8 +24,14 @@ public class Interface {
 		float largeur = container.getWidth();
 		float hauteur = container.getHeight();
 		context.setColor(Color.black);
-		context.drawString("Ici la population mondiale.",largeur-400,hauteur-105);
-		context.drawString("Ici le temps qui passe.",largeur-400,hauteur-55);
+		//Affichage box de droite
+		context.drawString("Ici la population mondiale.",largeur-270,hauteur-105);
+		context.drawString("Ici le temps qui passe.",largeur-270,hauteur-55);
+		//Affichage box de gauche
+		context.drawString("Ici l'expérience",40,hauteur-105);
+		context.drawString("Ici le bouton et accès aux compétences", 40, hauteur-55);
+		//Affichage box centrale
+		context.drawString("Ici la barre de propag",largeur/2-50,hauteur-55);
 	}
 	
 	public void leftBox() {
