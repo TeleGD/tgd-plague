@@ -31,6 +31,8 @@ public class SkillPage extends BasicGameState {
 	@Override
 	public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
 		player.renderFromKillPage(gameContainer, stateBasedGame, graphics);
+		String title = "Arbre des compétences";
+		graphics.drawString (title, (gameContainer.getWidth()-graphics.getFont().getWidth(title))/2, 24);
 	}
 
 	@Override
