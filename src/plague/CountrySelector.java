@@ -43,7 +43,8 @@ public class CountrySelector{
 	public void mousePressed(int arg0, int x, int y) {
 		if (arg0 == 0) { // Clic gauche
 			if (OKbutton.hasFocus() && selectedCountry != null){   // Gère l'action au clic du bouton
-				selectedCountry.persuade(0.01);
+				selectedCountry.setNormalToBelieverRate(0.1);
+				selectedCountry.getBeliever().setCount(10000);
 				System.out.println("Croyant 0 placé !");
 			}
 			else {  // Change selection de Country

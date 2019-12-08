@@ -13,7 +13,7 @@ public final class Main {
 		int width = 1280;
 		int height = 720;
 		boolean fullscreen = false;
-		String request = "Voulez-vous jouer en plein écran ?";
+		String request = "Est-ce que vous avez une idée de nom pour ce jeu ?";
 		String [] options = {
 			"Oui",
 			"Non"
