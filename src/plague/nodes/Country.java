@@ -49,7 +49,7 @@ public class Country extends Node {
 			new double[]{0, 0, 1, 0},
 			new double[]{0, 0, 0, 1}
 		};
-		this.size = (float) Math.sqrt(Math.sqrt(population));
+		this.size = (float) Math.sqrt(Math.sqrt(population))/2;
 		//this.size = (float) Math.pow(Math.log(population), 3);
 		this.latitude = latitude;
 		this.longitude = longitude;

@@ -4,15 +4,15 @@
 		{
 			"id": 0,
 			"name": "France",
-			"latitude": 41,
-			"longitude": 10,
+			"latitude": 46,
+			"longitude": 2,
 			"population": 60e6
 		},
 		{
 			"id": 1,
 			"name": "Japon",
-			"latitude": 39,
-			"longitude": 163,
+			"latitude": 33,
+			"longitude": 140,
 			"population": 120e6
 		},
         {
@@ -72,11 +72,74 @@
 			"population": 1356e6
 		},
         {
-			"id": 9,
+			"id": 10,
 			"name": "Etats-Unis",
 			"latitude": 40,
 			"longitude": -102,
 			"population": 328e6
+		},
+        {
+			"id": 11,
+			"name": "Brésil",
+			"latitude": -9,
+			"longitude": -53,
+			"population": 207e6
+		},
+        {
+			"id": 12,
+			"name": "Nigéria",
+			"latitude": 17,
+			"longitude": 9,
+			"population": 191e6
+		},
+        {
+			"id": 13,
+			"name": "Indonésie",
+			"latitude": -4,
+			"longitude": 122,
+			"population": 266e6
+		},
+        {
+			"id": 14,
+			"name": "Pakistan",
+			"latitude": 30,
+			"longitude": 69,
+			"population": 207e6
+		},
+        {
+			"id": 15,
+			"name": "Mexique",
+			"latitude": 24,
+			"longitude": -103,
+			"population": 127e6
+		},
+        {
+			"id": 16,
+			"name": "Canada",
+			"latitude": 57,
+			"longitude": -102,
+			"population": 37e6
+		},
+        {
+			"id": 17,
+			"name": "Argentine",
+			"latitude": -35,
+			"longitude": -65,
+			"population": 43e6
+		},
+        {
+			"id": 18,
+			"name": "Egypte",
+			"latitude": 26,
+			"longitude": 30,
+			"population": 91e6
+		},
+        {
+			"id": 19,
+			"name": "Allemagne",
+			"latitude": 51,
+			"longitude": 10,
+			"population": 83e6
 		},
 	],
 	"links":
@@ -86,21 +149,86 @@
 			"countries": [0, 1],
             "type": "air"
 		},
+
         {
-			"weight": 0.8,
-			"countries": [0, 5],
-            "type": "sea"
-		},
-        {
-			"weight": 0.8,
-			"countries": [3, 4],
-            "type": "sea"
+			"weight": 1,
+			"countries": [0, 5, 19],
+            "type": "earth"
 		},
         {
 			"weight": 1,
-			"countries": [0, 1, 5],
+			"countries": [3, 4, 12, 18],
             "type": "earth"
+		},
+        {
+			"weight": 1,
+			"countries": [5, 8, 9],
+            "type": "earth"
+		},
+        {
+			"weight": 1,
+			"countries": [16, 10],
+            "type": "earth"
+		},
+        {
+			"weight": 1,
+			"countries": [15, 10],
+            "type": "earth"
+		},
+        {
+			"weight": 1,
+			"countries": [15, 11,17],
+            "type": "earth"
+		},
+        {
+			"weight": 0.8,
+			"countries": [1, 8],
+            "type": "sea"
+		},
+        {
+			"weight": 0.8,
+			"countries": [3, 11],
+            "type": "sea"
+		},
+{
+			"weight": 0.8,
+			"countries": [3, 2],
+            "type": "sea"
+		},
+{
+			"weight": 0.8,
+			"countries": [2, 7],
+            "type": "sea"
+		},
+{
+			"weight": 0.8,
+			"countries": [2, 13],
+            "type": "sea"
+		},
+        {
+			"weight": 0.8,
+			"countries": [1, 13],
+            "type": "sea"
+		},
+        {
+			"weight": 0.8,
+			"countries": [8, 13],
+            "type": "sea"
+		},
+        {
+			"weight": 0.8,
+			"countries": [9, 13],
+            "type": "sea"
+		},
+        {
+			"weight": 0.8,
+			"countries": [0, 10],
+            "type": "sea"
+		},
+        {
+			"weight": 0.8,
+			"countries": [0, 18],
+            "type": "sea"
 		}
-
 	]
 }

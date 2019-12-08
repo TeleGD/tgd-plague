@@ -7,6 +7,7 @@ import org.json.JSONObject;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
@@ -36,6 +37,8 @@ public class World extends BasicGameState {
 	private float aspectRatio;
 	private CountrySelector countrySelector;
 	private static Music theme;
+	private Image sprite = AppLoader.loadPicture("/res/images/equirectangular.png");
+	private Image background;
 	static {
 		try {
 			theme = new Music("res/musics/Bio_UnitMetre_-_06_-_Resonance.ogg");
@@ -62,6 +65,7 @@ public class World extends BasicGameState {
 		this.width = container.getWidth();
 		this.height = container.getHeight();
 		this.aspectRatio = Math.min(container.getWidth() / 1280f, container.getHeight() / 720f);
+		background = sprite.getScaledCopy(this.width, this.height);
 		//countries.add(new Country("Pays 1", (int) 60e6, 41, 10, this));
 		//countries.add(new Country("Pays 2", (int) 1e6, -9, -120, this));
 	}
@@ -120,15 +124,26 @@ public class World extends BasicGameState {
 		/* Méthode exécutée environ 60 fois par seconde */
 		context.setColor(Color.white);
 		context.fillRect(0, 0, width, height);
+		context.drawImage(background, (float)0, (float)0);
 		context.setColor(Color.decode("#4C4C4C"));
 		String title = "Propagation de la religion "+this.player.getReligion().getName();
 		context.drawString (title, (width-context.getFont().getWidth(title))/2, 24);
+		
 		for (Link l : links) {
-			l.render(container, game, context);
+			if(! (l instanceof AirLink)) {
+				l.render(container, game, context);
+			}
 		}
+		
 		for (Country c : countries) {
 			c.render(container, game, context);
 		}
+		for (Link l : links) {
+			if(l instanceof AirLink) {
+				l.render(container, game, context);
+			}
+		}
+		
 		if (countrySelector !=null){
 			countrySelector.render(container, game, context);
 		}
@@ -220,9 +235,9 @@ public class World extends BasicGameState {
 				}
 				String type = link.getString("type");
 				switch (type) {
-				case "earth" :  this.links.add(new EarthLink(weight, countries));
-				case "air" : this.links.add(new AirLink(weight,countries));
-				case "sea" : this.links.add(new SeaLink(weight,countries));
+				case "earth" :  this.links.add(new EarthLink(weight, countries)); break;
+				case "air" : this.links.add(new AirLink(weight,countries)); break;
+				case "sea" : this.links.add(new SeaLink(weight,countries)); break;
 				default : break;
 				}
 			}
