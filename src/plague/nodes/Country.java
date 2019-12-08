@@ -33,10 +33,10 @@ public class Country extends Node {
 	private ArrayList<Link> links;
 
 	public Country(String name, int population, double latitude, double longitude, World world) {
-		this.normal = new Normal(population);
-		this.believer = new Believer(0);
-		this.recluse = new Recluse(0);
-		this.heretic = new Heretic(0);
+		this.normal = new Normal(population/2);
+		this.believer = new Believer(population/4);
+		this.recluse = new Recluse(population/8);
+		this.heretic = new Heretic(population/8);
 		this.internal_evolution_matrix = new double[][]{
 			new double[]{1, 0, 0, 0},
 			new double[]{0, 1, 0, 0},
@@ -49,7 +49,7 @@ public class Country extends Node {
 			new double[]{0, 0, 1, 0},
 			new double[]{0, 0, 0, 1}
 		};
-		this.size = (float) Math.sqrt(population)/60;
+		this.size = (float) Math.sqrt(Math.sqrt(population));
 		//this.size = (float) Math.pow(Math.log(population), 3);
 		this.latitude = latitude;
 		this.longitude = longitude;
@@ -57,7 +57,10 @@ public class Country extends Node {
 		this.y = (int)(world.getHeight()*(-latitude+90)/180);
 		this.links = new ArrayList<>();
 	}
-
+	
+	public String getName() {
+		return this.name;
+	}
 	public Normal getNormal() {
 		return this.normal;
 	}
@@ -119,7 +122,7 @@ public class Country extends Node {
 
 	public void update(GameContainer container, StateBasedGame game, int delta) {
 		isolatedPropagation();
-		connectedPropagation();
+//		connectedPropagation();
 
 		this.rate = this.believer.getCount()/this.getPopulation();
 		this.color = this.getColor();
@@ -218,13 +221,13 @@ public class Country extends Node {
 		double t2=360*(normal.getCount()+believer.getCount())/sum;
 		double t3 = 360*(normal.getCount()+believer.getCount()+recluse.getCount())/sum;
 
-		context.setColor(Color.green);
+		context.setColor(Color.decode("#EF8A26"));// Population normale
 		context.fillArc(this.x-this.size/2, this.y-this.size/2, this.size, this.size, (float)t0, (float)t1);
-		context.setColor(Color.cyan);
+		context.setColor(Color.decode("#AD5746"));// Population croyante
 		context.fillArc(this.x-this.size/2, this.y-this.size/2, this.size, this.size, (float)t1, (float)t2);
-		context.setColor(Color.pink);
+		context.setColor(Color.decode("#6C2466"));// Population recluse
 		context.fillArc(this.x-this.size/2, this.y-this.size/2, this.size, this.size, (float)t2, (float)t3);
-		context.setColor(Color.yellow);
+		context.setColor(Color.decode("#8E6F67"));// Population hérétique
 		context.fillArc(this.x-this.size/2, this.y-this.size/2, this.size, this.size, (float)t3, (float)t0);
 
 		//context.setColor(this.color);

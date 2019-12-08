@@ -30,7 +30,8 @@ public abstract class Link extends Node {
 				0,
 				0
 		};
-		this.updatePosition();
+		this.updatePosition();	
+		
 	}
 
 	public double getWeight() {

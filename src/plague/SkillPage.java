@@ -38,6 +38,7 @@ public class SkillPage extends BasicGameState {
 		Input input = container.getInput();
 		if (input.isKeyDown(Input.KEY_ESCAPE)) {
 			game.enterState(3, new FadeOutTransition(), new FadeInTransition());
+			((World) game.getState(3)).setState(3);
 		}
 		player.updateFromSkillPage(container, game, delta);
 
