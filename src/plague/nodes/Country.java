@@ -23,7 +23,12 @@ public class Country extends Node {
 	private Believer believer;
 	private Recluse recluse;
 	private Heretic heretic;
-	private double[][] internal_evolution_matrix;
+
+	private double normalToBelieverRate;
+	private double normalToHereticRate;
+	private double believerToRecluseRate;
+	private double believerToHereticRate;
+
 	private double[][] external_evolution_matrix;
 	private float size;
 	private float dashesStart;
@@ -33,16 +38,17 @@ public class Country extends Node {
 	private ArrayList<Link> links;
 
 	public Country(String name, int population, double latitude, double longitude, World world) {
+		// Initialisation test //TODO : virer
 		this.normal = new Normal(population/2);
 		this.believer = new Believer(population/4);
 		this.recluse = new Recluse(population/8);
 		this.heretic = new Heretic(population/8);
-		this.internal_evolution_matrix = new double[][]{
-			new double[]{1, 0, 0, 0},
-			new double[]{0, 1, 0, 0},
-			new double[]{0, 0, 1, 0},
-			new double[]{0, 0, 0, 1}
-		};
+
+		this.normalToBelieverRate = 0;
+		this.normalToHereticRate = 0;
+		this.believerToRecluseRate = 0;
+		this.believerToHereticRate = 0;
+
 		this.external_evolution_matrix = new double[][]{
 			new double[]{1, 0, 0, 0},
 			new double[]{0, 1, 0, 0},
@@ -102,7 +108,7 @@ public class Country extends Node {
 	}
 
 	private double getCredulity() {
-		return this.internal_evolution_matrix[1][1] - 1;
+		return getNormalToBelieverRate();
 	}
 	
 	public int getX() {
@@ -136,27 +142,27 @@ public class Country extends Node {
 	 * Calcule et applique la propagation de la croyance en interne à ce Country (sans considérer les Link)
 	 */
 	public void isolatedPropagation(){
-		double[] inputVector = new double[]{
-				this.normal.getCount(),
-				this.believer.getCount(),
-				this.recluse.getCount(),
-				this.heretic.getCount()
-		};
-		double[] outputVector = new double[]{
-				0,
-				0,
-				0,
-				0
-		};
-		for (int i = 0; i < 4; i++) {
-			for (int j = 0; j < 4; j++) {
-				outputVector[i] += this.internal_evolution_matrix[i][j] * inputVector[j];
-			}
-		}
-		this.normal.setNewCount(outputVector[0]);
-		this.believer.setNewCount(outputVector[1]);
-		this.recluse.setNewCount(outputVector[2]);
-		this.heretic.setNewCount(outputVector[3]);
+		double population = this.getPopulation();
+
+		double n0 = this.normal.getCount();
+		double b0 = this.believer.getCount();
+		double r0 = this.recluse.getCount();
+		double h0 = this.heretic.getCount();
+
+		double ratioN0 = n0 / population;
+		double ratioB0 = b0 / population;
+		double ratioR0 = r0 / population;
+		double ratioH0 = h0 / population;
+
+		double n1 = n0 * (1 - this.normalToBelieverRate * ratioB0 - this.normalToHereticRate * ratioH0);
+		double b1 = b0 * (1 + this.normalToBelieverRate * ratioN0 - this.believerToRecluseRate * ratioR0 - this.believerToHereticRate * ratioH0);
+		double r1 = r0 * (1 + this.believerToRecluseRate * ratioB0);
+		double h1 = h0 * (1 + this.normalToHereticRate * ratioN0 + this.believerToHereticRate * ratioB0);
+
+		this.normal.setNewCount(n1);
+		this.believer.setNewCount(b1);
+		this.recluse.setNewCount(r1);
+		this.heretic.setNewCount(h1);
 	}
 
 	/**
@@ -215,11 +221,11 @@ public class Country extends Node {
 
 	public void render (GameContainer container, StateBasedGame game, Graphics context) {
 		//Calcul des proportions de chaque partie de la population
-		int sum = (int)(normal.getCount()+believer.getCount()+recluse.getCount()+heretic.getCount());
+		double population = this.getPopulation();
 		double t0=0;
-		double t1=360*normal.getCount()/sum;
-		double t2=360*(normal.getCount()+believer.getCount())/sum;
-		double t3 = 360*(normal.getCount()+believer.getCount()+recluse.getCount())/sum;
+		double t1=360*normal.getCount()/population;
+		double t2=360*(normal.getCount()+believer.getCount())/population;
+		double t3 = 360*(normal.getCount()+believer.getCount()+recluse.getCount())/population;
 
 		context.setColor(Color.decode("#EF8A26"));// Population normale
 		context.fillArc(this.x-this.size/2, this.y-this.size/2, this.size, this.size, (float)t0, (float)t1);
@@ -256,27 +262,11 @@ public class Country extends Node {
 		recluse.updateCount();
 	}
 
-	private void change_internal(int originIndex, int destIndex, double x) {
-		this.internal_evolution_matrix[originIndex][originIndex] -= x;
-		this.internal_evolution_matrix[destIndex][originIndex] += x;
-	}
-
 	private void change_external(int originIndex, int destIndex, double x) {
 		this.external_evolution_matrix[originIndex][originIndex] -= x;
 		this.external_evolution_matrix[destIndex][originIndex] += x;
 	}
 
-	public void persuade(double x) {
-		this.change_internal(0, 1, x);
-	}
-
-	public void isolate(double x) {
-		this.change_internal(1, 2, x);
-	}
-
-	public void split(double x) {
-		this.change_internal(2, 3, x);
-	}
 
 	public void persuade_external(double x) {
 		this.change_external(0, 1, x);
@@ -305,5 +295,35 @@ public class Country extends Node {
 		links.add(link);
 	}
 
+	public double getNormalToBelieverRate() {
+		return normalToBelieverRate;
+	}
 
+	public void setNormalToBelieverRate(double normalToBelieverRate) {
+		this.normalToBelieverRate = normalToBelieverRate;
+	}
+
+	public double getNormalToHereticRate() {
+		return normalToHereticRate;
+	}
+
+	public void setNormalToHereticRate(double normalToHereticRate) {
+		this.normalToHereticRate = normalToHereticRate;
+	}
+
+	public double getBelieverToRecluseRate() {
+		return believerToRecluseRate;
+	}
+
+	public void setBelieverToRecluseRate(double believerToRecluseRate) {
+		this.believerToRecluseRate = believerToRecluseRate;
+	}
+
+	public double getBelieverToHereticRate() {
+		return believerToHereticRate;
+	}
+
+	public void setBelieverToHereticRate(double believerToHereticRate) {
+		this.believerToHereticRate = believerToHereticRate;
+	}
 }
