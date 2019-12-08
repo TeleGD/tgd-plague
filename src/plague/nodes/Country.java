@@ -221,13 +221,13 @@ public class Country extends Node {
 		double t2=360*(normal.getCount()+believer.getCount())/sum;
 		double t3 = 360*(normal.getCount()+believer.getCount()+recluse.getCount())/sum;
 
-		context.setColor(Color.decode("#EF8A26"));
+		context.setColor(Color.decode("#EF8A26"));// Population normale
 		context.fillArc(this.x-this.size/2, this.y-this.size/2, this.size, this.size, (float)t0, (float)t1);
-		context.setColor(Color.decode("#AD5746"));
+		context.setColor(Color.decode("#AD5746"));// Population croyante
 		context.fillArc(this.x-this.size/2, this.y-this.size/2, this.size, this.size, (float)t1, (float)t2);
-		context.setColor(Color.decode("#6C2466"));
+		context.setColor(Color.decode("#6C2466"));// Population recluse
 		context.fillArc(this.x-this.size/2, this.y-this.size/2, this.size, this.size, (float)t2, (float)t3);
-		context.setColor(Color.decode("#8E6F67"));
+		context.setColor(Color.decode("#8E6F67"));// Population hérétique
 		context.fillArc(this.x-this.size/2, this.y-this.size/2, this.size, this.size, (float)t3, (float)t0);
 
 		//context.setColor(this.color);
