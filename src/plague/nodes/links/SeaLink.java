@@ -2,6 +2,7 @@ package plague.nodes.links;
 
 import java.util.List;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.state.StateBasedGame;
@@ -16,7 +17,11 @@ public class SeaLink extends Link {
 	}
 	
 	public void render(GameContainer container, StateBasedGame game, Graphics context)  {
-		// On n'affiche rien, il y a trop de liens maritimes !
+		context.setLineWidth(1f+(float)this.weight*2);
+		context.setColor(Color.decode("#007ed8"));
+		for (Country c : countries) {
+			context.drawLine(this.x, this.y, c.getX(), c.getY());
+		}
 	}
 
 }

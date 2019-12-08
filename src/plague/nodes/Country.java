@@ -122,7 +122,7 @@ public class Country extends Node {
 
 	public void update(GameContainer container, StateBasedGame game, int delta) {
 		isolatedPropagation();
-		connectedPropagation();
+//		connectedPropagation();
 
 		this.rate = this.believer.getCount()/this.getPopulation();
 		this.color = this.getColor();
