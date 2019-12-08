@@ -12,25 +12,38 @@ public abstract class Link extends Node {
 	protected double weight;
 	protected List<Country> countries;
 	protected float x, y;
-	/**
-	 * Somme des populations de tous les Country de countries pour chaque type de population
-	 */
-	private double[] flux;
 
 	public Link(double weight, List<Country> countries) {
+		super(0, 0, 0, 0);
 		this.weight = weight;
 		this.countries = countries;
-		for(Country c : countries){
-			c.addLink(this);
+		for (Country country: countries){
+			country.addLink(this);
 		}
-		flux = new double[]{
-				0,
-				0,
-				0,
-				0
-		};
-		this.updatePosition();	
-		
+		float x = 0, y = 0;
+		for (Country country: this.countries) {
+			x += country.getX();
+			y += country.getY();
+		}
+		this.x = x / countries.size();
+		this.y = y / countries.size();
+	}
+
+	public void update(GameContainer container, StateBasedGame game, int delta) {
+		double n = 0;
+		double b = 0;
+		double r = 0;
+		double h = 0;
+		for (Country country: countries) {
+			n += country.getNormal().getCount();
+			b += country.getBeliever().getCount();
+			r += country.getRecluse().getCount();
+			h += country.getHeretic().getCount();
+		}
+		this.getNormal().setCount(n);
+		this.getBeliever().setCount(b);
+		this.getRecluse().setCount(r);
+		this.getHeretic().setCount(h);
 	}
 
 	public double getWeight() {
@@ -41,34 +54,6 @@ public abstract class Link extends Node {
 		return this.countries;
 	}
 
-	public void updateFlux(){
-		flux = new double[]{
-				0,
-				0,
-				0,
-				0
-		};
-		for (Country c : countries) {
-			flux[0] += c.getNormal().getCount();
-			flux[1] += c.getBeliever().getCount();
-			flux[2] += c.getRecluse().getCount();
-			flux[3] += c.getHeretic().getCount();
-		}
-	}
-
-	public double[] getFlux() {
-		return flux;
-	}
-	
-	public void updatePosition() {
-		float xSum = 0, ySum = 0;
-		for (Country c : countries) {
-			xSum += c.getX();
-			ySum += c.getY();
-		}
-		this.x = xSum / countries.size();
-		this.y = ySum / countries.size();
-	}
-	
 	public abstract void render(GameContainer container, StateBasedGame game, Graphics context);
+
 }
