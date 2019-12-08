@@ -21,10 +21,11 @@ public class Interface {
 	}
 
 	public void render(GameContainer container, StateBasedGame game, Graphics context) {
-		float longueur = container.getHeight();
 		float largeur = container.getWidth();
+		float hauteur = container.getHeight();
 		context.setColor(Color.black);
-		context.drawString(""+largeur,50,50);
+		context.drawString("Ici la population mondiale.",largeur-400,hauteur-105);
+		context.drawString("Ici le temps qui passe.",largeur-400,hauteur-55);
 	}
 	
 	public void leftBox() {
