@@ -4,13 +4,7 @@ import app.AppLoader;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.newdawn.slick.Color;
-import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Input;
-import org.newdawn.slick.Music;
-import org.newdawn.slick.SlickException;
-import org.newdawn.slick.Sound;
+import org.newdawn.slick.*;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.FadeInTransition;
@@ -106,9 +100,9 @@ public class World extends BasicGameState {
 		for (Country c : countries) {   // Première passe : contient notamment le calcul des newCount des populations
 			c.update(container, game, delta);
 		}
-		for (Country c : countries) {   // Deuxième passe : met à jour les count des populations avec leur newCount
-			c.updateCount();
-		}
+//		for (Country c : countries) {   // Deuxième passe : met à jour les count des populations avec leur newCount
+//			c.updateCount();
+//		}
 		if(countrySelector!=null){
 			countrySelector.update(container, game, delta);
 		}

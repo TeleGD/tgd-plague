@@ -1,12 +1,11 @@
 package plague.nodes;
 
-import java.util.List;
-
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.state.StateBasedGame;
-
 import plague.Node;
+
+import java.util.List;
 
 public abstract class Link extends Node {
 
@@ -50,10 +49,10 @@ public abstract class Link extends Node {
 				0
 		};
 		for (Country c : countries) {
-			flux[0] += c.getNormal().getCount() * weight;
-			flux[1] += c.getBeliever().getCount() * weight;
-			flux[2] += c.getRecluse().getCount() * weight;
-			flux[3] += c.getHeretic().getCount() * weight;
+			flux[0] += c.getNormal().getCount();
+			flux[1] += c.getBeliever().getCount();
+			flux[2] += c.getRecluse().getCount();
+			flux[3] += c.getHeretic().getCount();
 		}
 	}
 

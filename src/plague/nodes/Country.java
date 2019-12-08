@@ -128,7 +128,7 @@ public class Country extends Node {
 
 	public void update(GameContainer container, StateBasedGame game, int delta) {
 		isolatedPropagation();
-//		connectedPropagation();
+		connectedPropagation();
 
 		this.rate = this.believer.getCount()/this.getPopulation();
 		this.color = this.getColor();
@@ -159,10 +159,10 @@ public class Country extends Node {
 		double r1 = r0 * (1 + this.believerToRecluseRate * ratioB0);
 		double h1 = h0 * (1 + this.normalToHereticRate * ratioN0 + this.believerToHereticRate * ratioB0);
 
-		this.normal.setNewCount(n1);
-		this.believer.setNewCount(b1);
-		this.recluse.setNewCount(r1);
-		this.heretic.setNewCount(h1);
+		this.normal.setCount(n1);
+		this.believer.setCount(b1);
+		this.recluse.setCount(r1);
+		this.heretic.setCount(h1);
 	}
 
 	/**
@@ -189,33 +189,43 @@ public class Country extends Node {
 				0
 		};
 
+		double[] numerator = new double[]{
+				0,
+				0,
+				0,
+				0
+		};
+
 		for (Link link : links){    // Somme des flux de tous les links de ce Country
 			double[] fluxOfLink = link.getFlux();
 			for (int i = 0; i < 4 ; i++) {
-				fluxLinks[i] += fluxOfLink[i] - inputVector[i] * link.getWeight(); // On retire du flux les populations qui venaient de ce Country
+				fluxLinks[i] += fluxOfLink[i] * link.getWeight(); // dénominateur du ratio
+				numerator[i] += link.getWeight() * inputVector[i];
 			}
 		}
 
-		this.external_evolution_matrix = new double[][]{
-				new double[]{1, 0, 0, 0},
-				new double[]{0, 1, 0, 0},
-				new double[]{0, 0, 1, 0},
-				new double[]{0, 0, 0, 1}
-		};  // remise à zéro de la matrice d'évolution
+		double[] ratio = new double[]{
+				0,
+				0,
+				0,
+				0
+		};
 
-		persuade_external(fluxLinks[1]);
-		isolate_external(fluxLinks[2]);
-		split_external(fluxLinks[3]);
-
-		for (int i = 0; i < 4; i++) {
-			for (int j = 0; j < 4; j++) {
-				outputVector[i] += this.external_evolution_matrix[i][j] * inputVector[j];
+		for (int i = 0 ; i < ratio.length ; i ++){
+			if (fluxLinks[i] != 0){
+				ratio[i] = numerator[i] / fluxLinks[i];
 			}
 		}
-		this.normal.setNewCount(outputVector[0]);
-		this.believer.setNewCount(outputVector[1]);
-		this.recluse.setNewCount(outputVector[2]);
-		this.heretic.setNewCount(outputVector[3]);
+
+		double n1 = inputVector[0] - this.normalToBelieverRate * ratio[1] * inputVector[0] - this.normalToHereticRate * ratio[3] * inputVector[0];
+		double b1 = inputVector[1] + this.normalToBelieverRate * ratio[1] * inputVector[0] - this.believerToRecluseRate * ratio[2] * inputVector[1] - this.believerToHereticRate * ratio[3] * inputVector[1];
+		double r1 = inputVector[2] + this.believerToRecluseRate * ratio[2] * inputVector[1];
+		double h1 = inputVector[3] + this.normalToHereticRate * ratio[3] * inputVector[0] + this.believerToHereticRate * ratio[3] * inputVector[1];
+
+		this.normal.setCount(n1);
+		this.believer.setCount(b1);
+		this.recluse.setCount(r1);
+		this.heretic.setCount(h1);
 	}
 
 
@@ -251,16 +261,16 @@ public class Country extends Node {
 		context.drawString(""+(int)(this.rate*100)+"%", x-12, y-8);
 	}
 
-	/**
-	 * Met à jour les count des population
-	 * À utiliser lorsque tous les Country ont fini de calculer les nouvelles valeurs de leurs populations
-	 */
-	public void updateCount(){
-		normal.updateCount();
-		believer.updateCount();
-		heretic.updateCount();
-		recluse.updateCount();
-	}
+//	/**
+//	 * Met à jour les count des population
+//	 * À utiliser lorsque tous les Country ont fini de calculer les nouvelles valeurs de leurs populations
+//	 */
+//	public void updateCount(){
+//		normal.updateCount();
+//		believer.updateCount();
+//		heretic.updateCount();
+//		recluse.updateCount();
+//	}
 
 	private void change_external(int originIndex, int destIndex, double x) {
 		this.external_evolution_matrix[originIndex][originIndex] -= x;
