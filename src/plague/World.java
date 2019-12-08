@@ -48,10 +48,7 @@ public class World extends BasicGameState {
 		/* Méthode exécutée une unique fois au chargement du programme */
 		this.width = container.getWidth();
 		this.height = container.getHeight();
-		this.aspectRatio = Math.min(container.getWidth() / 1280f, container.getHeight() / 720f);
-		countries.add(new Country("Pays 1", (int) 60e6, 41, 10, this));
-		countries.add(new Country("Pays 2", (int) 1e6, -9, -120, this));
-	}
+		this.aspectRatio = Math.min(container.getWidth() / 1280f, container.getHeight() / 720f);	}
 
 	@Override
 	public void enter(GameContainer container, StateBasedGame game) {
