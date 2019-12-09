@@ -41,14 +41,31 @@ public class CountrySelector{
 	}
 
 	public void mousePressed(int arg0, int x, int y) {
-		if (arg0 == 0) { // Clic gauche
-			if (OKbutton.hasFocus() && selectedCountry != null){   // Gère l'action au clic du bouton
-				selectedCountry.setNormalToBelieverRate(0.1);
-				selectedCountry.getBeliever().setCount(10000);
-				System.out.println("Croyant 0 placé !");
-			}
-			else {  // Change selection de Country
-				selectedCountry = world.whichCountryPressed(x, y);  // met à jour le nouveau Country sélectionné (NULL s'il le curseur n'est pas sur un Country)
+		selectedCountry = world.whichCountryPressed(x, y);
+		if (selectedCountry != null) {
+			switch (arg0) {
+				case 0: { // Clic gauche
+					double n = selectedCountry.getNormal().getCount();
+					if (n >= 1) {
+						System.out.println(n);
+						double b = selectedCountry.getBeliever().getCount();
+						selectedCountry.getNormal().setCount(n - 1);
+						selectedCountry.getBeliever().setCount(b + 1);
+						System.out.println("Croyant 0 placé !");
+					}
+					break;
+				}
+				case 1: { // Clic droit
+					double b = selectedCountry.getBeliever().getCount();
+					if (b >= 1) {
+						System.out.println(b);
+						double r = selectedCountry.getRecluse().getCount();
+						selectedCountry.getBeliever().setCount(b - 1);
+						selectedCountry.getRecluse().setCount(r + 1);
+						System.out.println("Reclus 0 placé !");
+					}
+					break;
+				}
 			}
 		}
 	}

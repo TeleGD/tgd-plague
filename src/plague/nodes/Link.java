@@ -1,7 +1,6 @@
 package plague.nodes;
 
 import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
 import org.newdawn.slick.state.StateBasedGame;
 import plague.Node;
 
@@ -17,7 +16,7 @@ public abstract class Link extends Node {
 		super(0, 0, 0, 0);
 		this.weight = weight;
 		this.countries = countries;
-		for (Country country: countries){
+		for (Country country: this.countries) {
 			country.addLink(this);
 		}
 		float x = 0, y = 0;
@@ -34,7 +33,7 @@ public abstract class Link extends Node {
 		double b = 0;
 		double r = 0;
 		double h = 0;
-		for (Country country: countries) {
+		for (Country country: this.countries) {
 			n += country.getNormal().getCount();
 			b += country.getBeliever().getCount();
 			r += country.getRecluse().getCount();
@@ -53,7 +52,5 @@ public abstract class Link extends Node {
 	public List<Country> getCountries() {
 		return this.countries;
 	}
-
-	public abstract void render(GameContainer container, StateBasedGame game, Graphics context);
 
 }

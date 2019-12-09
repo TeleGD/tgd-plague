@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Country extends Node {
+
 	private String name;
 	private double latitude, longitude;
 	private int x, y;
@@ -28,14 +29,10 @@ public class Country extends Node {
 	public Country(String name, int population, double latitude, double longitude, World world) {
 		super(population, 0, 0, 0);
 
-		// Initialisation test //TODO : virer
-
-		
-
-		this.normalToBelieverRate = 0;
-		this.normalToHereticRate = 0;
-		this.believerToRecluseRate = 0;
-		this.believerToHereticRate = 0;
+		this.normalToBelieverRate = 0.001;
+		this.normalToHereticRate = 0.001;
+		this.believerToRecluseRate = 0.001;
+		this.believerToHereticRate = 0.001;
 
 		this.size = (float) Math.sqrt(Math.sqrt(population))/2;
 		//this.size = (float) Math.pow(Math.log(population), 3);
@@ -112,7 +109,7 @@ public class Country extends Node {
 		double denominatorR = 0;
 		double denominatorH = 0;
 
-		for (Link link: links) { // Somme des flux de tous les links de ce Country
+		for (Link link: this.links) { // Somme des flux de tous les links de ce Country
 			// numeratorN += n0 * link.getWeight();
 			numeratorB += b0 * link.getWeight();
 			numeratorR += r0 * link.getWeight();
@@ -130,7 +127,7 @@ public class Country extends Node {
 
 		double n1 = n0 - this.normalToBelieverRate * ratioB * n0 - this.normalToHereticRate * ratioH * n0;
 		double b1 = b0 + this.normalToBelieverRate * ratioB * n0 - this.believerToRecluseRate * ratioR * b0 - this.believerToHereticRate * ratioH * b0;
-		double r1 = r0 + this.believerToRecluseRate * ratioB * b0;
+		double r1 = r0 + this.believerToRecluseRate * ratioR * b0;
 		double h1 = h0 + this.normalToHereticRate * ratioH * n0 + this.believerToHereticRate * ratioH * b0;
 
 		this.getNormal().setCount(n1);
@@ -166,7 +163,7 @@ public class Country extends Node {
 			theta2 = 2*Math.PI*(this.dashesStart+(double)(i+1)/n);
 			context.drawLine((float)(x+size/2.25*Math.cos(theta1)), (float)(y-size/2.25*Math.sin(theta1)), (float)(x+size/2.25*Math.cos(theta2)), (float)(y-size/2.25*Math.sin(theta2)));;
 		}
-		double rate = this.getBeliever().getCount()/this.getPopulation();
+		double rate = this.getRate();
 		context.drawString(""+(int)(rate*100)+"%", x-12, y-8);
 	}
 
@@ -177,11 +174,15 @@ public class Country extends Node {
 	 * @return
 	 */
 	public boolean isCursorOnCountry(int x, int y) {
-		return (Math.abs(x - this.x) <= size / 2);
+		return Math.hypot(this.x - x, this.y - y) <= size / 2;
 	}
 
 	public void addLink(Link link){
 		links.add(link);
+	}
+
+	public double getRate() {
+		return (this.getBeliever().getCount() + this.getRecluse().getCount()) / this.getPopulation();
 	}
 
 	public double getNormalToBelieverRate() {

@@ -1,5 +1,9 @@
 package plague;
 
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.state.StateBasedGame;
+
 import plague.populations.Believer;
 import plague.populations.Heretic;
 import plague.populations.Normal;
@@ -38,5 +42,9 @@ public abstract class Node {
 	public double getPopulation() {
 		return this.normal.getCount() + this.believer.getCount() + this.recluse.getCount() + this.heretic.getCount();
 	}
+
+	public abstract void update(GameContainer container, StateBasedGame game, int delta);
+
+	public abstract void render(GameContainer container, StateBasedGame game, Graphics context);
 
 }

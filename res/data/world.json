@@ -1,6 +1,5 @@
 {
-	"nodes":
-	[
+	"nodes": [
 		{
 			"id": 0,
 			"name": "France",
@@ -15,126 +14,126 @@
 			"longitude": 140,
 			"population": 120e6
 		},
-        {
+		{
 			"id": 2,
 			"name": "Australie",
 			"latitude": -25,
 			"longitude": 135,
 			"population": 25e6
 		},
-        {
+		{
 			"id": 3,
 			"name": "Afrique du Sud",
 			"latitude": -29,
 			"longitude": 25,
 			"population": 57e6
 		},
-        {
+		{
 			"id": 4,
 			"name": "Burkina Faso",
 			"latitude": 12,
 			"longitude": -1,
 			"population": 19e6
 		},
-        {
+		{
 			"id": 5,
 			"name": "Russie",
 			"latitude": 62,
 			"longitude": 95,
 			"population": 144e6
 		},
-        {
+		{
 			"id": 6,
 			"name": "Suède",
 			"latitude": 64,
 			"longitude": 16,
 			"population": 10e6
 		},
-        {
+		{
 			"id": 7,
 			"name": "Nouvelle Zélande",
 			"latitude": -42,
 			"longitude": 171,
 			"population": 4.5e6
 		},
-        {
+		{
 			"id": 8,
 			"name": "Chine",
 			"latitude": 33,
 			"longitude": 103,
 			"population": 1415e6
 		},
-        {
+		{
 			"id": 9,
 			"name": "Inde",
 			"latitude": 22,
 			"longitude": 79,
 			"population": 1356e6
 		},
-        {
+		{
 			"id": 10,
 			"name": "Etats-Unis",
 			"latitude": 40,
 			"longitude": -102,
 			"population": 328e6
 		},
-        {
+		{
 			"id": 11,
 			"name": "Brésil",
 			"latitude": -9,
 			"longitude": -53,
 			"population": 207e6
 		},
-        {
+		{
 			"id": 12,
 			"name": "Nigéria",
 			"latitude": 17,
 			"longitude": 9,
 			"population": 191e6
 		},
-        {
+		{
 			"id": 13,
 			"name": "Indonésie",
 			"latitude": -4,
 			"longitude": 122,
 			"population": 266e6
 		},
-        {
+		{
 			"id": 14,
 			"name": "Pakistan",
 			"latitude": 30,
 			"longitude": 69,
 			"population": 207e6
 		},
-        {
+		{
 			"id": 15,
 			"name": "Mexique",
 			"latitude": 24,
 			"longitude": -103,
 			"population": 127e6
 		},
-        {
+		{
 			"id": 16,
 			"name": "Canada",
 			"latitude": 57,
 			"longitude": -102,
 			"population": 37e6
 		},
-        {
+		{
 			"id": 17,
 			"name": "Argentine",
 			"latitude": -35,
 			"longitude": -65,
 			"population": 43e6
 		},
-        {
+		{
 			"id": 18,
 			"name": "Egypte",
 			"latitude": 26,
 			"longitude": 30,
 			"population": 91e6
 		},
-        {
+		{
 			"id": 19,
 			"name": "Allemagne",
 			"latitude": 51,
@@ -142,94 +141,91 @@
 			"population": 83e6
 		},
 	],
-	"links":
-	[
+	"links": [
 		{
 			"weight": 0.4,
 			"countries": [0, 1],
-            "type": "air"
+			"type": "air"
 		},
-
-        {
+		{
 			"weight": 1,
 			"countries": [0, 5, 19],
-            "type": "earth"
+			"type": "earth"
 		},
-        {
+		{
 			"weight": 1,
 			"countries": [3, 4, 12, 18],
-            "type": "earth"
+			"type": "earth"
 		},
-        {
+		{
 			"weight": 1,
 			"countries": [5, 8, 9],
-            "type": "earth"
+			"type": "earth"
 		},
-        {
+		{
 			"weight": 1,
 			"countries": [16, 10],
-            "type": "earth"
+			"type": "earth"
 		},
-        {
+		{
 			"weight": 1,
 			"countries": [15, 10],
-            "type": "earth"
+			"type": "earth"
 		},
-        {
+		{
 			"weight": 1,
-			"countries": [15, 11,17],
-            "type": "earth"
+			"countries": [15, 11, 17],
+			"type": "earth"
 		},
-        {
+		{
 			"weight": 0.8,
 			"countries": [1, 8],
-            "type": "sea"
+			"type": "sea"
 		},
-        {
+		{
 			"weight": 0.8,
 			"countries": [3, 11],
-            "type": "sea"
+			"type": "sea"
 		},
-{
+		{
 			"weight": 0.8,
 			"countries": [3, 2],
-            "type": "sea"
+			"type": "sea"
 		},
-{
+		{
 			"weight": 0.8,
 			"countries": [2, 7],
-            "type": "sea"
+			"type": "sea"
 		},
-{
+		{
 			"weight": 0.8,
 			"countries": [2, 13],
-            "type": "sea"
+			"type": "sea"
 		},
-        {
+		{
 			"weight": 0.8,
 			"countries": [1, 13],
-            "type": "sea"
+			"type": "sea"
 		},
-        {
+		{
 			"weight": 0.8,
 			"countries": [8, 13],
-            "type": "sea"
+			"type": "sea"
 		},
-        {
+		{
 			"weight": 0.8,
 			"countries": [9, 13],
-            "type": "sea"
+			"type": "sea"
 		},
-        {
+		{
 			"weight": 0.8,
 			"countries": [0, 10],
-            "type": "sea"
+			"type": "sea"
 		},
-        {
+		{
 			"weight": 0.8,
 			"countries": [0, 18],
-            "type": "sea"
+			"type": "sea"
 		}
 	]
 }
-

@@ -11,7 +11,6 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.Sound;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.FadeInTransition;
@@ -131,7 +130,7 @@ public class World extends BasicGameState {
 				l.render(container, game, context);
 			}
 		}
-		
+
 		for (Country c : countries) {
 			c.render(container, game, context);
 		}
@@ -140,7 +139,7 @@ public class World extends BasicGameState {
 				l.render(container, game, context);
 			}
 		}
-		
+
 		if (countrySelector !=null){
 			countrySelector.render(container, game, context);
 		}
