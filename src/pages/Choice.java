@@ -12,29 +12,29 @@ import app.elements.MenuItem;
 
 public class Choice extends AppMenu {
 
-	public Choice (int ID) {
-		super (ID);
+	public Choice(int ID) {
+		super(ID);
 	}
 
 	@Override
-	public void init (GameContainer container, StateBasedGame game) {
-		super.initSize (container, game, 600, 400);
-		super.init (container, game);
-		this.setTitle ("Choix");
-		this.setSubtitle ("TGD cherche titre désespérément pour ce jeu");
-		this.setMenu (Arrays.asList (new MenuItem [] {
-			new MenuItem ("Plague") {
-				public void itemSelected () {
-					game.enterState (4, new FadeOutTransition (), new FadeInTransition ());
+	public void init(GameContainer container, StateBasedGame game) {
+		super.initSize(container, game, 600, 400);
+		super.init(container, game);
+		this.setTitle("Choix");
+		this.setSubtitle("TGD cherche titre désespérément pour ce jeu");
+		this.setMenu(Arrays.asList(new MenuItem[] {
+			new MenuItem("Preach or Die 1000: Holy Plague") {
+				public void itemSelected() {
+					game.enterState(4, new FadeOutTransition(), new FadeInTransition());
 				}
 			},
-			new MenuItem ("Retour") {
-				public void itemSelected () {
-					game.enterState (0, new FadeOutTransition (), new FadeInTransition ());
+			new MenuItem("Retour") {
+				public void itemSelected() {
+					game.enterState(0, new FadeOutTransition(), new FadeInTransition());
 				}
 			}
 		}));
-		this.setHint ("SELECT A GAME");
+		this.setHint("SELECT A GAME");
 	}
 
 }

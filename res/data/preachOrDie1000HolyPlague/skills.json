@@ -1,0 +1,444 @@
+{"skills":
+	[
+		{
+			"id": 1,
+			"x":565,
+			"y":285,
+			"imgPath":"/images/preachOrDie1000HolyPlague/icons/skill_porte_a_porte.png",
+			"name":"Porte à porte",
+			"description":"Vos adeptes se déplacent dans le voisinage pour répandre votre parole. Augmente votre persuasion.",
+			"isolement": 0,
+			"cohesion": 0,
+			"persuasion": 4,
+			"experienceNeeded": 1,
+			"successors":
+				[
+					{
+						"id": 4
+					},
+					{
+						"id": 5
+					},
+					{
+						"id": 10
+					}
+				],
+			"unlocked": 1
+		},
+		{
+			"id": 2,
+			"x":642,
+			"y":285,
+			"imgPath":"/images/preachOrDie1000HolyPlague/icons/skill_reunion.png",
+			"name":"Réunion",
+			"description":"Vos adeptes se réunissent pour un moment de partage. Augmente votre cohésion.",
+			"isolement": 0,
+			"cohesion": 4,
+			"persuasion": 0,
+			"experienceNeeded": 1,
+			"successors":
+				[
+					{
+						"id": 6
+					},
+					{
+						"id": 7
+					},
+					{
+						"id": 8
+					}
+				],
+			"unlocked": 1
+		},
+		{
+			"id": 3,
+			"x":603,
+			"y":362,
+			"imgPath":"/images/preachOrDie1000HolyPlague/icons/skill_tenue.png",
+			"name":"Tenue",
+			"description":"Vos adeptes arborent un magnifique vêtement de culte. Augmente votre isolement.",
+			"isolement": 4,
+			"cohesion": 0,
+			"persuasion": 0,
+			"experienceNeeded": 1,
+			"successors":
+				[
+					{
+						"id": 8
+					},
+					{
+						"id": 9
+					},
+					{
+						"id": 10
+					}
+				],
+			"unlocked": 1
+		},
+		{
+			"id": 4,
+			"x":528,
+			"y":208,
+			"imgPath":"/images/preachOrDie1000HolyPlague/icons/skill_rumeur.png",
+			"name":"Rumeur",
+			"description":"Des rumeurs circulent à votre sujet. Augmente votre persuasion.",
+			"isolement": 0,
+			"cohesion": 0,
+			"persuasion": 4,
+			"experienceNeeded": 1,
+			"successors":
+				[
+					{
+						"id": 11
+					},
+					{
+						"id": 12
+					}
+				],
+			"unlocked": 0
+		},
+		{
+			"id": 5,
+			"x":605,
+			"y":208,
+			"imgPath":"/images/preachOrDie1000HolyPlague/icons/skill_manifestation.png",
+			"name":"Manifestation",
+			"description":"Il s'agit de moments de joie et de partage entre sectaires. Augmente votre persuasion et votre cohésion.",
+			"isolement": 0,
+			"cohesion": 2,
+			"persuasion": 2,
+			"experienceNeeded": 1,
+			"successors":
+				[
+					{
+						"id": 13
+					}
+				],
+			"unlocked": 0
+		},
+		{
+			"id": 6,
+			"x":720,
+			"y":208,
+			"imgPath":"/images/preachOrDie1000HolyPlague/icons/skill_structure.png",
+			"name":"Structuration",
+			"description":"Votre secte méritait un bel organigramme. Augmente votre cohésion.",
+			"isolement": 0,
+			"cohesion": 4,
+			"persuasion": 0,
+			"experienceNeeded": 1,
+			"successors":
+				[
+					{
+						"id": 14
+					}
+				],
+			"unlocked": 0
+		},
+		{
+			"id": 7,
+			"x":720,
+			"y":285,
+			"imgPath":"/images/preachOrDie1000HolyPlague/icons/skill_pelerin.png",
+			"name":"Pélerinage",
+			"description":"Rien de tel pour souder votre secte. Augmente votre cohésion.",
+			"isolement": 0,
+			"cohesion": 4,
+			"persuasion": 0,
+			"experienceNeeded": 1,
+			"successors":
+				[
+					{
+						"id": 14
+					}
+				],
+			"unlocked": 0
+		},
+		{
+			"id": 8,
+			"x":681,
+			"y":362,
+			"imgPath":"/images/preachOrDie1000HolyPlague/icons/skill_ceremonie.png",
+			"name":"Cérémonie",
+			"description":"Une cérémonie très solennelle dont vous êtes fier. Augmente votre isolement et votre cohésion.",
+			"isolement": 2,
+			"cohesion": 2,
+			"persuasion": 0,
+			"experienceNeeded": 1,
+			"successors":
+				[
+					{
+						"id": 15
+					},
+					{
+						"id": 16
+					}
+				],
+			"unlocked": 0
+		},
+		{
+			"id": 9,
+			"x":603,
+			"y":439,
+			"imgPath":"/images/preachOrDie1000HolyPlague/icons/skill_gourou.png",
+			"name":"Gourou",
+			"description":"Il grandit si vite, un vrai petit chef de secte. Augmente votre isolement.",
+			"isolement": 4,
+			"cohesion": 0,
+			"persuasion": 0,
+			"experienceNeeded": 1,
+			"successors":
+				[
+					{
+						"id": 17
+					}
+				],
+			"unlocked": 0
+		},
+		{
+			"id": 10,
+			"x":527,
+			"y":362,
+			"imgPath":"/images/preachOrDie1000HolyPlague/icons/skill_defile.png",
+			"name":"Défilé",
+			"description":"A la fois engagé et fashion. Augmente votre persuasion et votre isolement.",
+			"isolement": 2,
+			"cohesion": 0,
+			"persuasion": 2,
+			"experienceNeeded": 1,
+			"successors":
+				[
+				],
+			"unlocked": 0
+		},
+		{
+			"id": 11,
+			"x":451,
+			"y":208,
+			"imgPath":"/images/preachOrDie1000HolyPlague/icons/skill_missionnaire.png",
+			"name":"Missionnaire",
+			"description":"Il répand la bonne parole : la vôtre. Augmente grandement votre persuasion.",
+			"isolement": 0,
+			"cohesion": 0,
+			"persuasion": 10,
+			"experienceNeeded": 2,
+			"successors":
+				[
+					{
+						"id": 23
+					}
+				],
+			"unlocked": 0
+		},
+		{
+			"id": 12,
+			"x":489,
+			"y":131,
+			"imgPath":"/images/preachOrDie1000HolyPlague/icons/skill_propagande.png",
+			"name":"Propagande",
+			"description":"C'est toujours des rumeurs, mais vous les lancez vous-même. Augmente grandement votre persuasion.",
+			"isolement": 0,
+			"cohesion": 0,
+			"persuasion": 10,
+			"experienceNeeded": 2,
+			"successors":
+				[
+					{
+						"id": 23
+					}
+				],
+			"unlocked": 0
+		},
+		{
+			"id": 13,
+			"x":605,
+			"y":131,
+			"imgPath":"/images/preachOrDie1000HolyPlague/icons/skill_festival.png",
+			"name":"Festival",
+			"description":"Ce festival fait référence dans le milieu des sectes. Augmente votre persuasion et votre cohésion.",
+			"isolement": 0,
+			"cohesion": 6,
+			"persuasion": 4,
+			"experienceNeeded": 2,
+			"successors":
+				[
+				],
+			"unlocked": 0
+		},
+		{
+			"id": 14,
+			"x":797,
+			"y":235,
+			"imgPath":"/images/preachOrDie1000HolyPlague/icons/skill_prophete.png",
+			"name":"Prophète",
+			"description":"Il anime à merveille votre séminaire de Pâques. Augmente votre cohésion et votre isolement.",
+			"isolement": 4,
+			"cohesion": 6,
+			"persuasion": 0,
+			"experienceNeeded": 2,
+			"successors":
+				[
+				],
+			"unlocked": 0
+		},
+		{
+			"id": 15,
+			"x":758,
+			"y":362,
+			"imgPath":"/images/preachOrDie1000HolyPlague/icons/skill_temple.png",
+			"name":"Temple",
+			"description":"On y est à l'aise pour écouter votre parole. Augmente votre cohésion et votre isolement.",
+			"isolement": 5,
+			"cohesion": 5,
+			"persuasion": 0,
+			"experienceNeeded": 2,
+			"successors":
+				[
+					{
+						"id": 21
+					},
+					{
+						"id": 22
+					}
+				],
+			"unlocked": 0
+		},
+		{
+			"id": 16,
+			"x":717,
+			"y":439,
+			"imgPath":"/images/preachOrDie1000HolyPlague/icons/skill_rituel.png",
+			"name":"Rituel",
+			"description":"Des fois ça se passe bien. Augmente votre isolement et votre cohésion.",
+			"isolement": 8,
+			"cohesion": 0,
+			"persuasion": 2,
+			"experienceNeeded": 2,
+			"successors":
+				[
+					{
+						"id": 20
+					}
+				],
+			"unlocked": 0
+		},
+		{
+			"id": 17,
+			"x":603,
+			"y":516,
+			"imgPath":"/images/preachOrDie1000HolyPlague/icons/skill_martyr.png",
+			"name":"Martyr",
+			"description":"C'est pour la bonne cause. Augmente grandement votre isolement.",
+			"isolement": 10,
+			"cohesion": 0,
+			"persuasion": 0,
+			"experienceNeeded": 2,
+			"successors":
+				[
+					{
+						"id": 18
+					}
+				],
+			"unlocked": 0
+		},
+		{
+			"id": 18,
+			"x":526,
+			"y":516,
+			"imgPath":"/images/preachOrDie1000HolyPlague/icons/skill_milice.png",
+			"name":"Milice",
+			"description":"Pour protéger vos adeptes, rien de plus. Augmente grandement votre isolement en dépit de votre persuasion.",
+			"isolement": 18,
+			"cohesion": 0,
+			"persuasion": -6,
+			"experienceNeeded": 2,
+			"successors":
+				[
+					{
+						"id": 19
+					}
+				],
+			"unlocked": 0
+		},
+		{
+			"id": 19,
+			"x":449,
+			"y":516,
+			"imgPath":"/images/preachOrDie1000HolyPlague/icons/skill_croisade.png",
+			"name":"Croisade",
+			"description":"Deus vult. Augmente grandement votre isolement et votre cohesion en dépit de votre persuasion.",
+			"isolement": 20,
+			"cohesion": 8,
+			"persuasion": -6,
+			"experienceNeeded": 3,
+			"successors":
+				[
+				],
+			"unlocked": 0
+		},
+		{
+			"id": 20,
+			"x":758,
+			"y":516,
+			"imgPath":"/images/preachOrDie1000HolyPlague/icons/skill_lieu_de_culte.png",
+			"name":"Lieu de culte",
+			"description":"Ce qui se passe au lieu de culte, reste au lieu de culte. Augmente votre isolement et votre cohésion.",
+			"isolement": 7,
+			"cohesion": 3,
+			"persuasion": 0,
+			"experienceNeeded": 2,
+			"successors":
+				[
+				],
+			"unlocked": 0
+		},
+		{
+			"id": 21,
+			"x":835,
+			"y":400,
+			"imgPath":"/images/preachOrDie1000HolyPlague/icons/skill_idolatrie.png",
+			"name":"Idolâtrie",
+			"description":"Aucun blasphème ne sera toléré. Augmente votre cohésion et votre isolement.",
+			"isolement": 6,
+			"cohesion": 12,
+			"persuasion": 0,
+			"experienceNeeded": 3,
+			"successors":
+				[
+				],
+			"unlocked": 0
+		},
+		{
+			"id": 22,
+			"x":835,
+			"y":323,
+			"imgPath":"/images/preachOrDie1000HolyPlague/icons/skill_offrande.png",
+			"name":"Offrandes",
+			"description":"Même périmé ça passe. Augmente grandement votre cohésion en dépit de votre isolement.",
+			"isolement": -4,
+			"cohesion": 18,
+			"persuasion": 0,
+			"experienceNeeded": 3,
+			"successors":
+				[
+				],
+			"unlocked": 0
+		},
+		{
+			"id": 23,
+			"x":412,
+			"y":131,
+			"imgPath":"/images/preachOrDie1000HolyPlague/icons/skill_miracle.png",
+			"name":"Miracle",
+			"description":"Certifié par vous-même. Augmente tout, en particulier votre persuasion.",
+			"isolement": 15,
+			"cohesion": 10,
+			"persuasion": 10,
+			"experienceNeeded": 4,
+			"successors":
+				[
+				],
+			"unlocked": 0
+		}
+	]
+}

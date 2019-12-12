@@ -1,60 +1,69 @@
+import java.awt.DisplayMode;
+import java.awt.GraphicsEnvironment;
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
-import javax.swing.*;
-import java.awt.*;
+import app.AppLoader;
 
 public final class Main {
 
-	public static final void main (String [] arguments) throws SlickException {
-		String title = "Sans titre";
+	public static final void main(String[] arguments) throws SlickException {
+		String title = "Preach or Die 1000: Holy Plague";
 		int width = 1280;
 		int height = 720;
 		boolean fullscreen = false;
 		String request = "Est-ce que vous avez une idée de nom pour ce jeu ?";
-		String [] options = {
+		String[] options = new String[] {
 			"Oui",
 			"Non"
 		};
-		int returnValue = JOptionPane.showOptionDialog (
-			null,
+		JFrame frame = new JFrame();
+		frame.setIconImage(AppLoader.loadIcon("/images/icon.png").getImage());
+		int returnValue = JOptionPane.showOptionDialog(
+			frame,
 			request,
 			title,
 			JOptionPane.YES_NO_OPTION,
 			JOptionPane.QUESTION_MESSAGE,
 			null,
 			options,
-			options [0]
+			options[0]
 		);
+		frame.dispose();
 		if (returnValue == -1) {
 			return;
 		}
 		if (returnValue == 0) {
-			DisplayMode display = GraphicsEnvironment.getLocalGraphicsEnvironment ().getDefaultScreenDevice ().getDisplayMode ();
-			width = display.getWidth ();
-			height = display.getHeight ();
+			DisplayMode display = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode();
+			width = display.getWidth();
+			height = display.getHeight();
 			fullscreen = true;
 		}
-		StateBasedGame game = new StateBasedGame (title) {
+		StateBasedGame game = new StateBasedGame(title) {
 
 			@Override
-			public void initStatesList (GameContainer container) {
-				this.addState (new pages.Welcome (0));
-				this.addState (new pages.Choice (1));
-				this.addState (new pages.Pause (2));
-				this.addState (new plague.World (3));
-				this.addState (new pages.NameChoice (4));
-				this.addState (new plague.SkillPage (5));
+			public void initStatesList(GameContainer container) {
+				this.addState(new pages.Welcome(0));
+				this.addState(new pages.Choice(1));
+				this.addState(new pages.Pause(2));
+				this.addState(new games.preachOrDie1000HolyPlague.World(3));
+				this.addState(new games.preachOrDie1000HolyPlague.pages.NameChoice(4));
+				this.addState(new games.preachOrDie1000HolyPlague.pages.SkillPage(5));
 			}
 
 		};
-		AppGameContainer container = new AppGameContainer (game, width, height, fullscreen);
-		container.setTargetFrameRate (60);
-		container.setVSync (true);
-		container.setShowFPS (false);
-		container.start ();
+		AppGameContainer container = new AppGameContainer(game, width, height, fullscreen);
+		container.setTargetFrameRate(60);
+		container.setVSync(true);
+		container.setShowFPS(false);
+		container.setIcon(AppLoader.resolve("/images/icon.png"));
+		container.start();
 	}
 
 }

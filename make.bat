@@ -3,8 +3,8 @@ setlocal
 
 if "%1"=="" (
     echo Autostart
-    GOTO autostart 
-) else ( 
+    GOTO autostart
+) else (
     echo Parsing
     GOTO loop
 )
@@ -13,7 +13,7 @@ if "%1"=="" (
 if not exist "bin" (
     echo Build
     mkdir "bin"
-    javac -d bin -cp src;res;lib\* src\Main.java
+    javac -d bin -cp src;res;lib\common\*;lib\x86\* src\Main.java
 )
 goto RUN
 
@@ -39,7 +39,7 @@ goto paramError
 :BUILD
     echo Build
     if not exist "bin" mkdir "bin"
-    javac -d bin -cp src;res;lib\* src\Main.java
+    javac -d bin -cp src;res;lib\common\*;lib\x86\* src\Main.java
     GOTO next
 
 :CLEAN
@@ -49,7 +49,7 @@ goto paramError
 
 :RUN
     echo Run
-    java -cp bin;res;lib\* -Djava.library.path=res\natives Main
+    java -Djava.library.path=sys\x86 -cp bin;res;lib\common\*;lib\x86\* Main
     GOTO next
 
 :done

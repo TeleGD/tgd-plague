@@ -10,35 +10,35 @@ import org.newdawn.slick.state.transition.FadeOutTransition;
 import app.AppMenu;
 import app.elements.MenuItem;
 
-import plague.World;
+import games.preachOrDie1000HolyPlague.World;
 
 public class Pause extends AppMenu {
 
-	public Pause (int ID) {
-		super (ID);
+	public Pause(int ID) {
+		super(ID);
 	}
 
 	@Override
-	public void init (GameContainer container, StateBasedGame game) {
-		super.initSize (container, game, 600, 400);
-		super.init (container, game);
-		this.setTitle ("Pause");
-		this.setSubtitle ("Le temps de prendre un goûter");
-		this.setMenu (Arrays.asList (new MenuItem [] {
-			new MenuItem ("Retour") {
-				public void itemSelected () {
-					((World) game.getState (3)).setState (2);
-					game.enterState (3, new FadeOutTransition (), new FadeInTransition ());
+	public void init(GameContainer container, StateBasedGame game) {
+		super.initSize(container, game, 600, 400);
+		super.init(container, game);
+		this.setTitle("Pause");
+		this.setSubtitle("Le temps de prendre un goûter");
+		this.setMenu(Arrays.asList(new MenuItem[] {
+			new MenuItem("Retour") {
+				public void itemSelected() {
+					((World) game.getState(3)).setState(2);
+					game.enterState(3, new FadeOutTransition(), new FadeInTransition());
 				}
 			},
-			new MenuItem ("Abandon") {
-				public void itemSelected () {
-					((World) game.getState (3)).setState (0);
-					game.enterState (1, new FadeOutTransition (), new FadeInTransition ());
+			new MenuItem("Abandon") {
+				public void itemSelected() {
+					((World) game.getState(3)).setState(0);
+					game.enterState(1, new FadeOutTransition(), new FadeInTransition());
 				}
 			}
 		}));
-		this.setHint ("HAVE A SNACK");
+		this.setHint("HAVE A SNACK");
 	}
 
 }

@@ -1,4 +1,4 @@
-# *Plague*
+# *Preach or Die 1000: Holy Plague*
 
 *Coding Night* du 27/01/2018
 
