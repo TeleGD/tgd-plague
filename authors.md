@@ -8,5 +8,5 @@
 - Océane Chazé (@OceaneC)
 - Paul Chipot (@Bip-Biip)
 - Romain De Bodinat (@Arcadaos)
-- Tristan Le Godais (@TrisTOON)
+- Tristan Le Godais (@PolariTOON)
 - Xavier Indice (@XavierIndice)
